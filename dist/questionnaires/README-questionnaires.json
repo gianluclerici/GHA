@@ -1,0 +1,12 @@
+{
+  "notes": [
+    "The four questionnaires use the same schema.",
+    "Question-level traits and analysis metadata are intended for post-test analysis and should not be rendered during the assessment.",
+    "No pass/fail score or Google answer key is included."
+  ],
+  "supportedQuestionTypes": {
+    "likert": "question.text + options",
+    "most-least": "question.statements[] with ids and text",
+    "situational": "question.scenario + actions[] + responseMode"
+  }
+}

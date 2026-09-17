@@ -1,0 +1,1907 @@
+{
+  "id": "gha-03",
+  "title": "GHA Simulation #3 — Collaboration & Learning",
+  "description": "A fresh general-workplace set with more emphasis on communication, collaboration, feedback, inclusion, and adaptability.",
+  "simulation": true,
+  "version": "2026-09-17",
+  "durationMinutes": 30,
+  "allowBack": false,
+  "randomizeQuestions": false,
+  "metadata": {
+    "targetFormat": "2026-style Google Hiring Assessment practice",
+    "questionCount": 65,
+    "notes": "Original practice content inspired by publicly reported GHA formats. Not official Google questions."
+  },
+  "sections": [
+    {
+      "id": "forced-choice",
+      "name": "Work Style — Most Like Me / Least Like Me",
+      "instructions": "For each set of three statements, choose the statement that is MOST like you and the statement that is LEAST like you.",
+      "questions": [
+        {
+          "id": "gha-03-fc-01",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I treat confidential information as confidential even when sharing it would help me personally.",
+              "traits": {
+                "integrity": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I distinguish between acceptable shortcuts and shortcuts that create hidden risk.",
+              "traits": {
+                "quality": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I feel accountable for the quality of outcomes I contribute to.",
+              "traits": {
+                "ownership": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "integrity",
+              "quality",
+              "ownership"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-02",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I form reasonable assumptions and make them explicit when information is missing.",
+              "traits": {
+                "ambiguityTolerance": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I surface assumptions when they could affect a discussion.",
+              "traits": {
+                "communication": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I make timely decisions when additional analysis is unlikely to change the outcome.",
+              "traits": {
+                "decisiveness": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "ambiguityTolerance",
+              "communication",
+              "decisiveness"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-03",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I plan enough buffer for predictable delays.",
+              "traits": {
+                "reliability": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I look for the underlying cause of a problem instead of treating only the symptom.",
+              "traits": {
+                "problemSolving": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I actively learn from mistakes instead of only correcting them.",
+              "traits": {
+                "learning": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "reliability",
+              "problemSolving",
+              "learning"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-04",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I actively seek input from people whose perspective could improve the work.",
+              "traits": {
+                "collaboration": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I can change my plan without losing sight of the overall goal.",
+              "traits": {
+                "adaptability": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I avoid presenting uncertain information as if it were certain.",
+              "traits": {
+                "quality": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "collaboration",
+              "adaptability",
+              "quality"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-05",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I follow through on commitments even when the work becomes inconvenient.",
+              "traits": {
+                "ownership": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I confirm shared understanding when a decision is important.",
+              "traits": {
+                "communication": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I encourage quieter teammates to contribute when their input is relevant.",
+              "traits": {
+                "inclusion": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "ownership",
+              "communication",
+              "inclusion"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-06",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I know when a decision needs more evidence and when it needs action.",
+              "traits": {
+                "decisiveness": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I disclose conflicts of interest rather than assuming they are harmless.",
+              "traits": {
+                "integrity": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I define the problem clearly before optimizing a solution.",
+              "traits": {
+                "problemSolving": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "decisiveness",
+              "integrity",
+              "problemSolving"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-07",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I ask for feedback on work that would benefit from another perspective.",
+              "traits": {
+                "learning": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I am comfortable revising a plan that I invested significant effort in.",
+              "traits": {
+                "adaptability": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I organize my work so that I can meet agreed deadlines.",
+              "traits": {
+                "reliability": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "learning",
+              "adaptability",
+              "reliability"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-08",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I protect important quality standards even when deadlines are tight.",
+              "traits": {
+                "quality": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I actively seek input from people whose perspective could improve the work.",
+              "traits": {
+                "collaboration": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I identify what can be decided now when a situation is uncertain.",
+              "traits": {
+                "ambiguityTolerance": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "quality",
+              "collaboration",
+              "ambiguityTolerance"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-09",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I communicate important changes before they surprise other people.",
+              "traits": {
+                "communication": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I follow through on commitments even when the work becomes inconvenient.",
+              "traits": {
+                "ownership": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I look for evidence that could disprove my first explanation.",
+              "traits": {
+                "problemSolving": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "communication",
+              "ownership",
+              "problemSolving"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-10",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I consider how decisions may affect people whose experience differs from mine.",
+              "traits": {
+                "inclusion": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I change my approach when evidence shows a better one.",
+              "traits": {
+                "learning": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I make decisions explicit so others can act on them.",
+              "traits": {
+                "decisiveness": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "inclusion",
+              "learning",
+              "decisiveness"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-11",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I communicate early when a commitment may be at risk.",
+              "traits": {
+                "reliability": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I would rather flag a significant limitation than hide it to make work look complete.",
+              "traits": {
+                "quality": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I am consistent about standards even when no one is watching.",
+              "traits": {
+                "integrity": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "reliability",
+              "quality",
+              "integrity"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-12",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I can switch between different kinds of work when priorities require it.",
+              "traits": {
+                "adaptability": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I adjust how I explain something based on who is listening.",
+              "traits": {
+                "communication": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "When I notice an issue, I look for a practical way to move it toward resolution.",
+              "traits": {
+                "ownership": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "adaptability",
+              "communication",
+              "ownership"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-13",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I look for the underlying cause of a problem instead of treating only the symptom.",
+              "traits": {
+                "problemSolving": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I make room for people with different perspectives to contribute.",
+              "traits": {
+                "inclusion": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I share useful context with teammates instead of keeping it to myself.",
+              "traits": {
+                "collaboration": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "problemSolving",
+              "inclusion",
+              "collaboration"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-14",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I can make useful progress before every detail is known.",
+              "traits": {
+                "ambiguityTolerance": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I seek out information when I realize my understanding is incomplete.",
+              "traits": {
+                "learning": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I distinguish between acceptable shortcuts and shortcuts that create hidden risk.",
+              "traits": {
+                "quality": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "ambiguityTolerance",
+              "learning",
+              "quality"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-15",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I can choose a direction after weighing the most relevant tradeoffs.",
+              "traits": {
+                "decisiveness": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I communicate early when a commitment may be at risk.",
+              "traits": {
+                "reliability": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I surface assumptions when they could affect a discussion.",
+              "traits": {
+                "communication": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "decisiveness",
+              "reliability",
+              "communication"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-16",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I raise risks early rather than assuming someone else will handle them.",
+              "traits": {
+                "ownership": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I can switch between different kinds of work when priorities require it.",
+              "traits": {
+                "adaptability": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I am consistent about standards even when no one is watching.",
+              "traits": {
+                "integrity": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "ownership",
+              "adaptability",
+              "integrity"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-17",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I work constructively with people who approach problems differently from me.",
+              "traits": {
+                "collaboration": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I look for the underlying cause of a problem instead of treating only the symptom.",
+              "traits": {
+                "problemSolving": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I actively learn from mistakes instead of only correcting them.",
+              "traits": {
+                "learning": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "collaboration",
+              "problemSolving",
+              "learning"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-18",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I check work that could have meaningful consequences if it is wrong.",
+              "traits": {
+                "quality": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I make room for people with different perspectives to contribute.",
+              "traits": {
+                "inclusion": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I confirm shared understanding when a decision is important.",
+              "traits": {
+                "communication": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "quality",
+              "inclusion",
+              "communication"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-19",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I speak up when I notice conduct that could create a serious ethical concern.",
+              "traits": {
+                "integrity": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I keep track of commitments without needing repeated reminders.",
+              "traits": {
+                "reliability": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I know when a decision needs more evidence and when it needs action.",
+              "traits": {
+                "decisiveness": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "integrity",
+              "reliability",
+              "decisiveness"
+            ]
+          }
+        },
+        {
+          "id": "gha-03-fc-20",
+          "type": "most-least",
+          "statements": [
+            {
+              "id": "a",
+              "text": "I identify what can be decided now when a situation is uncertain.",
+              "traits": {
+                "ambiguityTolerance": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "I raise risks early rather than assuming someone else will handle them.",
+              "traits": {
+                "ownership": 1
+              }
+            },
+            {
+              "id": "c",
+              "text": "I can switch between different kinds of work when priorities require it.",
+              "traits": {
+                "adaptability": 1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "forced-choice work-style tradeoff",
+            "traits": [
+              "ambiguityTolerance",
+              "ownership",
+              "adaptability"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "likert",
+      "name": "Work Style — Agreement Scale",
+      "instructions": "Choose the response that best reflects how you generally behave at work.",
+      "questions": [
+        {
+          "id": "gha-03-lk-01",
+          "type": "likert",
+          "text": "Once I have invested heavily in a plan, I prefer to keep it even when priorities change.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "adaptability": -1
+          },
+          "consistencyGroup": "adaptability-2",
+          "analysis": {
+            "polarity": -1
+          }
+        },
+        {
+          "id": "gha-03-lk-02",
+          "type": "likert",
+          "text": "I share context that could help teammates make better decisions.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "collaboration": 1
+          },
+          "consistencyGroup": "collaboration-3",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-03",
+          "type": "likert",
+          "text": "I break complex problems into smaller questions that can be tested.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "problemSolving": 1
+          },
+          "consistencyGroup": "problemSolving-1",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-04",
+          "type": "likert",
+          "text": "I think about edge cases when they could materially change the outcome.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "quality": 1
+          },
+          "consistencyGroup": "quality-2",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-05",
+          "type": "likert",
+          "text": "When I strongly believe I am right, I have little reason to revisit my view after hearing colleagues.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "collaboration": -1
+          },
+          "consistencyGroup": "collaboration-3",
+          "analysis": {
+            "polarity": -1
+          }
+        },
+        {
+          "id": "gha-03-lk-06",
+          "type": "likert",
+          "text": "If a shortcut is unlikely to be noticed, I am comfortable using it to save time.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "quality": -1
+          },
+          "consistencyGroup": "quality-1",
+          "analysis": {
+            "polarity": -1
+          }
+        },
+        {
+          "id": "gha-03-lk-07",
+          "type": "likert",
+          "text": "When time is short, I tend to rely on people whose opinions I already know.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "inclusion": -1
+          },
+          "consistencyGroup": "inclusion-2",
+          "analysis": {
+            "polarity": -1
+          }
+        },
+        {
+          "id": "gha-03-lk-08",
+          "type": "likert",
+          "text": "I am less likely to challenge a dismissive comment if the person who made it is influential.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "inclusion": -1
+          },
+          "consistencyGroup": "inclusion-3",
+          "analysis": {
+            "polarity": -1
+          }
+        },
+        {
+          "id": "gha-03-lk-09",
+          "type": "likert",
+          "text": "I consider how my decisions affect the final outcome, not only my assigned deliverable.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "ownership": 1
+          },
+          "consistencyGroup": "ownership-1",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-10",
+          "type": "likert",
+          "text": "I summarize decisions so that people know what will happen next.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "communication": 1
+          },
+          "consistencyGroup": "communication-2",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-11",
+          "type": "likert",
+          "text": "If I expect a delay, I communicate it before the deadline is missed.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "reliability": 1
+          },
+          "consistencyGroup": "reliability-3",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-12",
+          "type": "likert",
+          "text": "Once I become competent at a task, I rarely seek feedback on how I perform it.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "learning": -1
+          },
+          "consistencyGroup": "learning-1",
+          "analysis": {
+            "polarity": -1
+          }
+        },
+        {
+          "id": "gha-03-lk-13",
+          "type": "likert",
+          "text": "I make reversible decisions promptly when additional analysis is unlikely to change the choice.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "decisiveness": 1
+          },
+          "consistencyGroup": "decisiveness-2",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-14",
+          "type": "likert",
+          "text": "I am willing to discard work when new evidence shows that a different approach is better.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "adaptability": 1
+          },
+          "consistencyGroup": "adaptability-3",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-15",
+          "type": "likert",
+          "text": "People I work with generally know what they can expect from me and when.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "reliability": 1
+          },
+          "consistencyGroup": "reliability-1",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-16",
+          "type": "likert",
+          "text": "I delay sharing bad news until I have a complete solution.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "communication": -1
+          },
+          "consistencyGroup": "communication-2",
+          "analysis": {
+            "polarity": -1
+          }
+        },
+        {
+          "id": "gha-03-lk-17",
+          "type": "likert",
+          "text": "A rule can be ignored if everyone involved informally agrees it is unnecessary.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "integrity": -1
+          },
+          "consistencyGroup": "integrity-3",
+          "analysis": {
+            "polarity": -1
+          }
+        },
+        {
+          "id": "gha-03-lk-18",
+          "type": "likert",
+          "text": "I change my approach when credible feedback reveals a weakness.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "learning": 1
+          },
+          "consistencyGroup": "learning-1",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-19",
+          "type": "likert",
+          "text": "I prefer roles where priorities remain stable for long periods.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "adaptability": -1
+          },
+          "consistencyGroup": "adaptability-2",
+          "analysis": {
+            "polarity": -1
+          }
+        },
+        {
+          "id": "gha-03-lk-20",
+          "type": "likert",
+          "text": "I make important assumptions explicit when they could affect a decision.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "communication": 1
+          },
+          "consistencyGroup": "communication-3",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-21",
+          "type": "likert",
+          "text": "I would correct the record if I received credit for someone else's work.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "integrity": 1
+          },
+          "consistencyGroup": "integrity-1",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-22",
+          "type": "likert",
+          "text": "If everyone has the same formal opportunity to speak, I do not need to think further about inclusion.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "inclusion": -1
+          },
+          "consistencyGroup": "inclusion-2",
+          "analysis": {
+            "polarity": -1
+          }
+        },
+        {
+          "id": "gha-03-lk-23",
+          "type": "likert",
+          "text": "I look for evidence that could challenge my first hypothesis.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "problemSolving": 1
+          },
+          "consistencyGroup": "problemSolving-3",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-24",
+          "type": "likert",
+          "text": "I am willing to change my approach when a teammate presents stronger evidence.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "collaboration": 1
+          },
+          "consistencyGroup": "collaboration-1",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-25",
+          "type": "likert",
+          "text": "Unclear ownership usually makes me pause until someone assigns responsibilities explicitly.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "ambiguityTolerance": -1
+          },
+          "consistencyGroup": "ambiguityTolerance-2",
+          "analysis": {
+            "polarity": -1
+          }
+        },
+        {
+          "id": "gha-03-lk-26",
+          "type": "likert",
+          "text": "Once I complete my assigned part, I rarely check whether the broader outcome succeeded.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "ownership": -1
+          },
+          "consistencyGroup": "ownership-3",
+          "analysis": {
+            "polarity": -1
+          }
+        },
+        {
+          "id": "gha-03-lk-27",
+          "type": "likert",
+          "text": "I actively look for lessons after something does not go as expected.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "learning": 1
+          },
+          "consistencyGroup": "learning-1",
+          "analysis": {
+            "polarity": 1
+          }
+        },
+        {
+          "id": "gha-03-lk-28",
+          "type": "likert",
+          "text": "I sometimes avoid making a decision because I do not want to be responsible if it turns out poorly.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "decisiveness": -1
+          },
+          "consistencyGroup": "decisiveness-2",
+          "analysis": {
+            "polarity": -1
+          }
+        },
+        {
+          "id": "gha-03-lk-29",
+          "type": "likert",
+          "text": "I would rather wait for certainty than make a reversible decision with incomplete information.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "ambiguityTolerance": -1
+          },
+          "consistencyGroup": "ambiguityTolerance-3",
+          "analysis": {
+            "polarity": -1
+          }
+        },
+        {
+          "id": "gha-03-lk-30",
+          "type": "likert",
+          "text": "When I identify an important risk, I make sure it is visible to the right people.",
+          "options": [
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree"
+          ],
+          "traits": {
+            "ownership": 1
+          },
+          "consistencyGroup": "ownership-1",
+          "analysis": {
+            "polarity": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "situational",
+      "name": "Workplace Judgment",
+      "instructions": "For each scenario, choose the action you would be MOST likely to take and the action you would be LEAST likely to take.",
+      "questions": [
+        {
+          "id": "gha-03-sjt-01",
+          "type": "situational",
+          "scenario": "A teammate strongly prefers a familiar tool, while a newer option may fit the problem better.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Compare the options against the actual requirements and run a small test if the tradeoff is unclear.",
+              "traits": {
+                "problemSolving": 1,
+                "learning": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Use the familiar tool to avoid debate.",
+              "traits": {
+                "learning": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Use the newer tool because newer technologies are usually better.",
+              "traits": {
+                "problemSolving": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Ask management to choose the tool.",
+              "traits": {
+                "decisiveness": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        },
+        {
+          "id": "gha-03-sjt-02",
+          "type": "situational",
+          "scenario": "You receive conflicting requests from two stakeholders with similar authority.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Clarify the underlying goals and priorities, make the conflict visible, and align on a decision.",
+              "traits": {
+                "communication": 1,
+                "ownership": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Work on whichever request arrived first.",
+              "traits": {
+                "problemSolving": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Try to satisfy both without telling them about the conflict.",
+              "traits": {
+                "reliability": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Wait until one stakeholder follows up again.",
+              "traits": {
+                "ownership": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        },
+        {
+          "id": "gha-03-sjt-03",
+          "type": "situational",
+          "scenario": "A teammate consistently delivers good work but rarely shares progress until the end.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Discuss the impact of late visibility and agree on a lightweight update rhythm.",
+              "traits": {
+                "communication": 1,
+                "collaboration": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Leave it alone because the final work is good.",
+              "traits": {
+                "communication": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Start monitoring the teammate closely without discussing it.",
+              "traits": {
+                "collaboration": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Escalate immediately to their manager.",
+              "traits": {
+                "collaboration": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        },
+        {
+          "id": "gha-03-sjt-04",
+          "type": "situational",
+          "scenario": "Your first solution works but creates noticeably higher operating cost than expected.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Quantify the impact and decide whether optimization is warranted based on the real tradeoffs.",
+              "traits": {
+                "problemSolving": 1,
+                "quality": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Ignore the cost because the functional requirement is met.",
+              "traits": {
+                "quality": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Rewrite everything immediately for maximum efficiency.",
+              "traits": {
+                "decisiveness": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Hide the cost until someone asks.",
+              "traits": {
+                "integrity": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        },
+        {
+          "id": "gha-03-sjt-05",
+          "type": "situational",
+          "scenario": "A peer gives you feedback you think is based on incomplete information.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Ask questions to understand their perspective, add missing context, and consider whether any part of the feedback is still useful.",
+              "traits": {
+                "learning": 1,
+                "communication": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Dismiss the feedback because the peer does not know the full situation.",
+              "traits": {
+                "learning": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Accept all of it without discussion.",
+              "traits": {
+                "learning": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Tell other teammates why the feedback was unfair.",
+              "traits": {
+                "collaboration": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        },
+        {
+          "id": "gha-03-sjt-06",
+          "type": "situational",
+          "scenario": "You notice that only a few people dominate recurring team discussions.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Adjust facilitation so relevant input can come from more people, including asynchronously when useful.",
+              "traits": {
+                "inclusion": 1,
+                "collaboration": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Assume the quieter people will speak if they have something important to add.",
+              "traits": {
+                "inclusion": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Require everyone to speak for the same amount of time.",
+              "traits": {
+                "inclusion": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Ask the most senior person to decide faster.",
+              "traits": {
+                "inclusion": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        },
+        {
+          "id": "gha-03-sjt-07",
+          "type": "situational",
+          "scenario": "A project has multiple plausible paths and no obvious best option.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Define decision criteria, identify what is reversible, and choose a path with a plan to learn quickly.",
+              "traits": {
+                "decisiveness": 1,
+                "ambiguityTolerance": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Continue researching until one option becomes clearly superior.",
+              "traits": {
+                "decisiveness": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Pick the option you know best.",
+              "traits": {
+                "problemSolving": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Ask several stakeholders to vote without defining criteria.",
+              "traits": {
+                "problemSolving": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        },
+        {
+          "id": "gha-03-sjt-08",
+          "type": "situational",
+          "scenario": "You are asked to summarize an incident before the investigation is complete.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Separate confirmed facts from hypotheses and clearly label what remains unknown.",
+              "traits": {
+                "integrity": 1,
+                "communication": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Provide the most likely explanation so leaders have a simple answer.",
+              "traits": {
+                "integrity": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Refuse to share anything until the investigation is complete.",
+              "traits": {
+                "communication": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Share every theory discussed by the team.",
+              "traits": {
+                "communication": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        },
+        {
+          "id": "gha-03-sjt-09",
+          "type": "situational",
+          "scenario": "A teammate accidentally deletes work and is embarrassed to tell the team.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Help recover or recreate the work, encourage early disclosure, and focus on preventing recurrence rather than blame.",
+              "traits": {
+                "collaboration": 1,
+                "learning": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Keep it secret if the work can be recreated before anyone notices.",
+              "traits": {
+                "integrity": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Tell the team immediately without giving the teammate a chance to explain.",
+              "traits": {
+                "collaboration": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Let the teammate solve it alone so they learn from the mistake.",
+              "traits": {
+                "collaboration": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        },
+        {
+          "id": "gha-03-sjt-10",
+          "type": "situational",
+          "scenario": "An internal process requires a form that seems redundant for your specific case.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Follow the process or use the approved exception path while proposing an improvement if the redundancy is real.",
+              "traits": {
+                "integrity": 1,
+                "ownership": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Skip the form because the requirement does not add value here.",
+              "traits": {
+                "integrity": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Ask a colleague to submit it under their name.",
+              "traits": {
+                "integrity": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Complain about the process but complete it incorrectly.",
+              "traits": {
+                "reliability": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        },
+        {
+          "id": "gha-03-sjt-11",
+          "type": "situational",
+          "scenario": "A customer reports a problem that you cannot reproduce.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Gather more context, look for differences in environment or usage, and avoid assuming the report is wrong.",
+              "traits": {
+                "problemSolving": 1,
+                "collaboration": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Close the issue because you cannot reproduce it.",
+              "traits": {
+                "ownership": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Tell the customer to try again later.",
+              "traits": {
+                "collaboration": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Implement a speculative fix without understanding the cause.",
+              "traits": {
+                "quality": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        },
+        {
+          "id": "gha-03-sjt-12",
+          "type": "situational",
+          "scenario": "A manager changes priorities after you have already completed significant work.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Clarify the reason for the change, preserve anything reusable, and re-plan around the new priority.",
+              "traits": {
+                "adaptability": 1,
+                "communication": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Argue to keep the old priority because of the work already invested.",
+              "traits": {
+                "adaptability": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Switch immediately without checking what commitments are affected.",
+              "traits": {
+                "reliability": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Continue the old work quietly until it is finished.",
+              "traits": {
+                "ownership": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        },
+        {
+          "id": "gha-03-sjt-13",
+          "type": "situational",
+          "scenario": "A teammate proposes using user data for a purpose that was not part of the original approved plan.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Pause and verify whether the new use is permitted before proceeding.",
+              "traits": {
+                "integrity": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Proceed if the data stays inside the company.",
+              "traits": {
+                "integrity": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Use only a small sample so the risk is low.",
+              "traits": {
+                "integrity": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Proceed now and ask for approval later.",
+              "traits": {
+                "integrity": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        },
+        {
+          "id": "gha-03-sjt-14",
+          "type": "situational",
+          "scenario": "You need input from an expert who is difficult to reach.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Prepare a focused question, use available documentation and colleagues first, then contact the expert with clear context.",
+              "traits": {
+                "ownership": 1,
+                "communication": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Wait until the expert becomes available.",
+              "traits": {
+                "ownership": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Make assumptions without documenting them.",
+              "traits": {
+                "ambiguityTolerance": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Escalate to the expert's manager immediately.",
+              "traits": {
+                "collaboration": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        },
+        {
+          "id": "gha-03-sjt-15",
+          "type": "situational",
+          "scenario": "A problem reappears after your team believed it was fixed.",
+          "responseMode": "most-least",
+          "actions": [
+            {
+              "id": "a",
+              "text": "Reopen the investigation, examine why the previous fix was insufficient, and update prevention measures.",
+              "traits": {
+                "problemSolving": 1,
+                "learning": 1
+              }
+            },
+            {
+              "id": "b",
+              "text": "Apply the same fix again because it worked before.",
+              "traits": {
+                "problemSolving": -1
+              }
+            },
+            {
+              "id": "c",
+              "text": "Treat it as a new unrelated issue.",
+              "traits": {
+                "learning": -1
+              }
+            },
+            {
+              "id": "d",
+              "text": "Wait for a larger impact before spending more time on it.",
+              "traits": {
+                "quality": -1
+              }
+            }
+          ],
+          "analysis": {
+            "purpose": "situational judgment; no explicit answer key stored"
+          }
+        }
+      ]
+    }
+  ]
+}

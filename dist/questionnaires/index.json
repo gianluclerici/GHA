@@ -1,8 +1,34 @@
 [
   {
     "id": "gha-01",
-    "name": "GHA Simulator — Technical Sample",
+    "name": "GHA Simulation #1 — Recruiter-Email Likert Format",
     "file": "gha-01.json",
-    "description": "A short technical sample used to verify each supported response format."
+    "description": "65 Likert-style work-behavior items, matching the 60–70 Likert description in the recruiter email as closely as possible.",
+    "questionCount": 65,
+    "durationMinutes": 30
+  },
+  {
+    "id": "gha-02",
+    "name": "GHA Simulation #2 — Ambiguity & Execution",
+    "file": "gha-02.json",
+    "description": "A fresh general-workplace set with more emphasis on uncertainty, ownership, execution, and decision-making.",
+    "questionCount": 65,
+    "durationMinutes": 30
+  },
+  {
+    "id": "gha-03",
+    "name": "GHA Simulation #3 — Collaboration & Learning",
+    "file": "gha-03.json",
+    "description": "A fresh general-workplace set with more emphasis on communication, collaboration, feedback, inclusion, and adaptability.",
+    "questionCount": 65,
+    "durationMinutes": 30
+  },
+  {
+    "id": "gha-04",
+    "name": "GHA Simulation #4 — Integrity & Judgment",
+    "file": "gha-04.json",
+    "description": "A fresh general-workplace set with more emphasis on integrity, confidentiality, quality, policy, and judgment under pressure.",
+    "questionCount": 65,
+    "durationMinutes": 30
   }
 ]
