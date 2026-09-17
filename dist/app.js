@@ -106,8 +106,18 @@ function beginAssessment() {
   const ordered = state.questionnaire.randomizeQuestions ? shuffle(allQuestions) : allQuestions;
   state.questions = ordered;
   state.attempt = { schemaVersion: 1, questionnaireId: state.questionnaire.id, questionOrder: ordered.map((question) => question.id), currentIndex: 0, answers: {}, startedAt: new Date().toISOString(), completedAt: null, completionReason: null };
-  saveAttempt(state.attempt);
+  if (!persistAttempt()) return;
   renderQuestion();
+}
+
+function persistAttempt() {
+  try {
+    saveAttempt(state.attempt);
+    return true;
+  } catch (error) {
+    renderError('Progress cannot be saved', error.message);
+    return false;
+  }
 }
 
 function renderQuestion() {
@@ -147,14 +157,14 @@ function submitCurrentQuestion(form) {
   state.attempt.answers[question.id] = answer;
   if (state.attempt.currentIndex === state.questions.length - 1) return finishAssessment('completed');
   state.attempt.currentIndex += 1;
-  saveAttempt(state.attempt);
+  if (!persistAttempt()) return;
   renderQuestion();
 }
 
 function previousQuestion() {
   if (!state.questionnaire.allowBack || state.attempt.currentIndex === 0) return;
   state.attempt.currentIndex -= 1;
-  saveAttempt(state.attempt);
+  if (!persistAttempt()) return;
   renderQuestion();
 }
 
@@ -162,7 +172,9 @@ function finishAssessment(reason) {
   if (state.attempt.completedAt) return;
   state.attempt.completedAt = new Date().toISOString();
   state.attempt.completionReason = reason;
-  saveAttempt(state.attempt);
+  const elapsed = Math.max(0, Math.floor((Date.parse(state.attempt.completedAt) - Date.parse(state.attempt.startedAt)) / 1000));
+  state.attempt.durationSeconds = state.questionnaire.durationMinutes ? Math.min(elapsed, state.questionnaire.durationMinutes * 60) : elapsed;
+  if (!persistAttempt()) return;
   renderCompletion();
 }
 
@@ -170,7 +182,7 @@ function renderCompletion() {
   timer.stop();
   setDocumentTitle('Assessment completed');
   const answered = Object.keys(state.attempt.answers).length;
-  const elapsed = Math.max(0, Math.floor((Date.parse(state.attempt.completedAt) - Date.parse(state.attempt.startedAt)) / 1000));
+  const elapsed = state.attempt.durationSeconds ?? Math.max(0, Math.floor((Date.parse(state.attempt.completedAt) - Date.parse(state.attempt.startedAt)) / 1000));
   const timedOut = state.attempt.completionReason === 'time-expired';
   app.innerHTML = `<section class="shell compact-shell" aria-labelledby="completion-title"><div class="completion-card"><div class="completion-mark" aria-hidden="true">✓</div><div class="eyebrow">${timedOut ? 'Time expired' : 'Attempt saved'}</div><h1 id="completion-title">Assessment completed</h1><p class="completion-summary">${answered} / ${state.questions.length} questions answered<br />Time used: ${formatDuration(elapsed)}</p><p class="lede">No score or pass/fail result is generated. Export the complete response data for separate analysis.</p><div class="completion-actions"><button class="button button-primary" type="button" data-action="download-json">Download results JSON</button><button class="button button-secondary" type="button" data-action="download-csv">Download results CSV</button><button class="button button-secondary" type="button" data-action="review">Review answers</button><button class="button button-quiet" type="button" data-action="home">Return to assessments</button></div></div></section>`;
 }

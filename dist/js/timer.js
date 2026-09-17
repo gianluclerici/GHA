@@ -5,10 +5,15 @@ export class AssessmentTimer {
     this.onThreshold = onThreshold;
     this.intervalId = null;
     this.seenThresholds = new Set();
+    this.activeStartedAt = null;
   }
 
   start(attempt, questionnaire) {
     this.stop();
+    if (this.activeStartedAt !== attempt.startedAt) {
+      this.seenThresholds.clear();
+      this.activeStartedAt = attempt.startedAt;
+    }
     if (!questionnaire.durationMinutes || attempt.completedAt) {
       this.onTick(null);
       return;

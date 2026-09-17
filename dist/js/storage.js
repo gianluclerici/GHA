@@ -10,7 +10,10 @@ export function loadAttempt(questionnaireId) {
     const raw = localStorage.getItem(key);
     if (!raw) return null;
     const attempt = JSON.parse(raw);
-    if (!attempt || attempt.questionnaireId !== questionnaireId || !Array.isArray(attempt.questionOrder) || typeof attempt.answers !== 'object') {
+    const hasValidStart = typeof attempt?.startedAt === 'string' && Number.isFinite(Date.parse(attempt.startedAt));
+    const hasValidIndex = Number.isInteger(attempt?.currentIndex) && attempt.currentIndex >= 0;
+    const hasValidAnswers = attempt?.answers && typeof attempt.answers === 'object' && !Array.isArray(attempt.answers);
+    if (!attempt || attempt.questionnaireId !== questionnaireId || !Array.isArray(attempt.questionOrder) || !hasValidAnswers || !hasValidStart || !hasValidIndex) {
       throw new Error('Stored attempt has an invalid shape.');
     }
     return attempt;

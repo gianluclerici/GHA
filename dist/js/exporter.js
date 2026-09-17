@@ -22,7 +22,7 @@ export function buildResult(questionnaire, questions, attempt) {
     startedAt: attempt.startedAt,
     completedAt: attempt.completedAt,
     completionReason: attempt.completionReason,
-    durationSeconds: Math.max(0, Math.floor((Date.parse(attempt.completedAt) - Date.parse(attempt.startedAt)) / 1000)),
+    durationSeconds: attempt.durationSeconds ?? Math.max(0, Math.floor((Date.parse(attempt.completedAt) - Date.parse(attempt.startedAt)) / 1000)),
     answers: questions.map((question) => {
       const answer = attempt.answers[question.id] ?? null;
       return {

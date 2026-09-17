@@ -43,4 +43,16 @@ const appSource = await readFile(new URL('../dist/app.js', import.meta.url), 'ut
 assert.ok(appSource.includes("URLSearchParams(location.search).get('assessment')"), 'direct query parameter loading is wired');
 assert.ok(!appSource.includes('sampleTraitAlpha'), 'engine does not hardcode questionnaire traits');
 
-console.log(`Smoke tests passed: ${questions.length} questions, 3 question types, timer, exports, validation, and direct loading.`);
+const storageData = new Map();
+globalThis.localStorage = {
+  getItem: (key) => storageData.get(key) ?? null,
+  setItem: (key, value) => storageData.set(key, value),
+  removeItem: (key) => storageData.delete(key)
+};
+const { loadAttempt, saveAttempt } = await import('../dist/js/storage.js');
+saveAttempt({ ...attempt, questionOrder: questions.map((question) => question.id), currentIndex: 4 });
+assert.equal(loadAttempt(questionnaire.id).currentIndex, 4, 'progress survives a storage round trip');
+storageData.set('gha-simulator:v1:attempt:gha-01', '{bad json');
+assert.equal(loadAttempt(questionnaire.id), null, 'corrupted local progress is discarded safely');
+
+console.log(`Smoke tests passed: ${questions.length} questions, 3 question types, persistence, timer, exports, validation, and direct loading.`);
