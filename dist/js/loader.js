@@ -26,6 +26,7 @@ function validateQuestion(question, location) {
     requireValue(Array.isArray(question.actions) && question.actions.length >= 2, `${location}.actions must contain at least two items.`);
     validateChoices(question.actions, `${location}.actions`);
     requireValue(['single', 'most-least'].includes(question.responseMode), `${location}.responseMode must be “single” or “most-least”.`);
+    requireValue(question.selectionMode == null || (question.responseMode === 'most-least' && ['pick-one-each', 'per-action'].includes(question.selectionMode)), `${location}.selectionMode must be “pick-one-each” or “per-action” for a most-least situational question.`);
   }
   if (question.traits !== undefined) requireValue(question.traits && typeof question.traits === 'object' && !Array.isArray(question.traits), `${location}.traits must be an object.`);
 }

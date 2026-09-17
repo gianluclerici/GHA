@@ -29,6 +29,9 @@ const answers = Object.fromEntries(questions.map((question) => {
   if (question.type === 'most-least' && question.selectionMode === 'per-statement') {
     return [question.id, { selections: Object.fromEntries(question.statements.map((statement, index) => [statement.id, index % 2 === 0 ? 'most' : 'least'])) }];
   }
+  if (question.type === 'situational' && question.responseMode === 'most-least' && question.selectionMode === 'per-action') {
+    return [question.id, { selections: Object.fromEntries(question.actions.map((action, index) => [action.id, index % 2 === 0 ? 'most' : 'least'])) }];
+  }
   const items = question.type === 'most-least' ? question.statements : question.actions;
   return [question.id, { most: items[0].id, least: items[1].id }];
 }));
@@ -44,6 +47,14 @@ const incompleteElements = { namedItem: (name) => ({ value: name.endsWith('c') ?
 assert.equal(Object.keys(readAnswer(perStatementQuestion, { elements: completeElements }).selections).length, perStatementQuestion.statements.length, 'one response is captured for every statement');
 assert.equal(readAnswer(perStatementQuestion, { elements: incompleteElements }), null, 'a missing row prevents submission');
 assert.equal(result.answers.find((answer) => answer.questionId === perStatementQuestion.id).responses.length, perStatementQuestion.statements.length, 'JSON export preserves every row response');
+const perActionQuestion = questions.find((question) => question.type === 'situational' && question.selectionMode === 'per-action');
+const perActionHtml = questionRenderers.situational(perActionQuestion, null, false);
+assert.equal((perActionHtml.match(/name="action-/g) ?? []).length, perActionQuestion.actions.length * 2, 'each situational action renders its own radio group');
+const completeActionElements = { namedItem: (name) => ({ value: name.endsWith('b') ? 'least' : 'most' }) };
+const incompleteActionElements = { namedItem: (name) => ({ value: name.endsWith('c') ? '' : 'most' }) };
+assert.equal(Object.keys(readAnswer(perActionQuestion, { elements: completeActionElements }).selections).length, perActionQuestion.actions.length, 'one response is captured for every situational action');
+assert.equal(readAnswer(perActionQuestion, { elements: incompleteActionElements }), null, 'a missing situational row prevents submission');
+assert.equal(result.answers.find((answer) => answer.questionId === perActionQuestion.id).responses.length, perActionQuestion.actions.length, 'JSON export preserves every situational row response');
 const csv = resultToCsv(result);
 assert.ok(csv.includes('questionnaire_id') && csv.includes('sampleTraitAlpha'), 'CSV export is structured and includes metadata');
 

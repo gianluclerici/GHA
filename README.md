@@ -82,6 +82,7 @@ Every question requires a unique `id` and supported `type`. Optional `traits` ma
 ### Situational
 
 Use `responseMode: "single"` for one response or `responseMode: "most-least"` for paired selections.
+For a most/least situational question, add `selectionMode: "per-action"` when every action row must receive its own **Most likely** or **Least likely** response. Omit it, or use `"pick-one-each"`, for one most-likely and one least-likely action across the group.
 
 ```json
 {

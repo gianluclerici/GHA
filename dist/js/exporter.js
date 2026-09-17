@@ -24,6 +24,16 @@ function perStatementExport(question, answer) {
   return { selectionMode: 'per-statement', responses, answerText };
 }
 
+function perActionExport(question, answer) {
+  const responses = question.actions.map((action) => ({
+    actionId: action.id,
+    action: action.text,
+    selection: answer?.selections?.[action.id] ?? null
+  }));
+  const answerText = responses.map((response) => `${response.action}: ${response.selection === 'most' ? 'Most likely' : response.selection === 'least' ? 'Least likely' : 'No answer'}`).join(' | ');
+  return { selectionMode: 'per-action', responses, answerText };
+}
+
 export function buildResult(questionnaire, questions, attempt) {
   return {
     schemaVersion: 1,
@@ -46,6 +56,8 @@ export function buildResult(questionnaire, questions, attempt) {
         ...(question.consistencyGroup ? { consistencyGroup: question.consistencyGroup } : {}),
         ...(question.type === 'most-least' && question.selectionMode === 'per-statement'
           ? perStatementExport(question, answer)
+          : question.type === 'situational' && question.responseMode === 'most-least' && question.selectionMode === 'per-action'
+          ? perActionExport(question, answer)
           : question.type === 'likert' || (question.type === 'situational' && question.responseMode === 'single')
           ? { answer, answerText: selectionLabel(question, answer) }
           : {

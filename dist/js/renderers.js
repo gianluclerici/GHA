@@ -45,6 +45,19 @@ function renderStatementRatings(question, answer, disabled) {
   </fieldset>`;
 }
 
+function renderActionRatings(question, answer, disabled) {
+  return `<fieldset class="question-fieldset" ${disabled ? 'disabled' : ''}>
+    <legend>${escapeText(question.scenario)}</legend>
+    <p class="question-help">Choose one response for every action.</p>
+    <div class="pair-grid pair-header" aria-hidden="true"><span>Action</span><span>Most likely</span><span>Least likely</span></div>
+    ${question.actions.map((action) => `<div class="pair-grid pair-row">
+      <span class="pair-text">${escapeText(action.text)}</span>
+      <label class="compact-choice"><input type="radio" name="action-${escapeText(action.id)}" value="most"${checked(answer?.selections?.[action.id] === 'most')} /><span class="sr-only">Most likely: ${escapeText(action.text)}</span><span class="mobile-label">Most likely</span></label>
+      <label class="compact-choice"><input type="radio" name="action-${escapeText(action.id)}" value="least"${checked(answer?.selections?.[action.id] === 'least')} /><span class="sr-only">Least likely: ${escapeText(action.text)}</span><span class="mobile-label">Least likely</span></label>
+    </div>`).join('')}
+  </fieldset>`;
+}
+
 function renderMostLeast(question, answer, disabled) {
   if (question.selectionMode === 'per-statement') return renderStatementRatings(question, answer, disabled);
   return renderPairedChoices(question.statements, answer, disabled, 'Which statements are most and least like you?');
@@ -52,6 +65,7 @@ function renderMostLeast(question, answer, disabled) {
 
 function renderSituational(question, answer, disabled) {
   if (question.responseMode === 'most-least') {
+    if (question.selectionMode === 'per-action') return renderActionRatings(question, answer, disabled);
     return renderPairedChoices(question.actions, answer, disabled, question.scenario);
   }
   return `<fieldset class="question-fieldset" ${disabled ? 'disabled' : ''}>
@@ -79,6 +93,11 @@ export function readAnswer(question, form) {
     if (Object.values(selections).some((selection) => !['most', 'least'].includes(selection))) return null;
     return { selections };
   }
+  if (question.type === 'situational' && question.responseMode === 'most-least' && question.selectionMode === 'per-action') {
+    const selections = Object.fromEntries(question.actions.map((action) => [action.id, form.elements.namedItem(`action-${action.id}`)?.value ?? '']));
+    if (Object.values(selections).some((selection) => !['most', 'least'].includes(selection))) return null;
+    return { selections };
+  }
   if (question.type === 'most-least' || (question.type === 'situational' && question.responseMode === 'most-least')) {
     const most = form.elements.most?.value;
     const least = form.elements.least?.value;
@@ -96,6 +115,10 @@ export function answerSummary(question, answer) {
   if (question.type === 'most-least' && question.selectionMode === 'per-statement') {
     if (!answer?.selections || question.statements.some((statement) => !answer.selections[statement.id])) return 'No answer recorded';
     return question.statements.map((statement) => `${statement.text}: ${answer.selections[statement.id] === 'most' ? 'Most like me' : 'Least like me'}`).join(' · ');
+  }
+  if (question.type === 'situational' && question.responseMode === 'most-least' && question.selectionMode === 'per-action') {
+    if (!answer?.selections || question.actions.some((action) => !answer.selections[action.id])) return 'No answer recorded';
+    return question.actions.map((action) => `${action.text}: ${answer.selections[action.id] === 'most' ? 'Most likely' : 'Least likely'}`).join(' · ');
   }
   if (question.type === 'situational' && question.responseMode === 'single') return find(answer);
   return `Most: ${find(answer.most)} · Least: ${find(answer.least)}`;

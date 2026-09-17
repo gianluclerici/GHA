@@ -111,6 +111,7 @@
           "id": "q10",
           "type": "situational",
           "responseMode": "most-least",
+          "selectionMode": "per-action",
           "scenario": "Two teammates interpret a synthetic project instruction differently.",
           "actions": [
             { "id": "a", "text": "Compare the interpretations against the stated goal." },
@@ -133,6 +134,7 @@
           "id": "q12",
           "type": "situational",
           "responseMode": "most-least",
+          "selectionMode": "per-action",
           "scenario": "A sample deadline changes after work has started.",
           "actions": [
             { "id": "a", "text": "Recheck priorities and communicate the updated plan." },
