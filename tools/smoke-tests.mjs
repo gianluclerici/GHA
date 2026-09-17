@@ -4,6 +4,7 @@ import { loadCatalog, loadQuestionnaire, flattenQuestions, validateQuestionnaire
 import { calculateRemainingSeconds } from '../dist/js/timer.js';
 import { buildResult, resultToCsv } from '../dist/js/exporter.js';
 import { questionRenderers, readAnswer } from '../dist/js/renderers.js';
+import { analyzeAssessment, analyzeExportedResult, loadScoringProfile } from '../dist/scoring.js';
 
 const baseUrl = process.env.GHA_BASE_URL ?? 'http://localhost:8000';
 const catalogResponse = await fetch(`${baseUrl}/questionnaires/index.json`);
@@ -15,6 +16,15 @@ const catalog = await loadCatalog();
 assert.ok(catalog.length > 0, 'catalog contains an assessment');
 const questionnaires = await Promise.all(catalog.map((entry) => loadQuestionnaire(entry)));
 assert.deepEqual(new Set(questionnaires.map((item) => item.id)), new Set(['gha-01', 'gha-02', 'gha-03', 'gha-04']), 'all four assessments load and validate');
+const profile = await loadScoringProfile('google-practice-2026');
+questionnaires.forEach((item) => {
+  assert.deepEqual(item.scoring, { profile: 'google-practice-2026', version: 1 }, `${item.id} declares the scoring profile`);
+  flattenQuestions(item).forEach((question) => {
+    if (question.type === 'likert') assert.ok([1, -1].includes(question.analysis?.polarity), `${question.id} has polarity metadata`);
+    if (question.type === 'situational') question.actions.forEach((action) => assert.ok(Number.isInteger(action.targetScore) && Math.abs(action.targetScore) <= 2, `${question.id}/${action.id} has a valid targetScore`));
+    if (question.type === 'most-least' && question.excludeFromTargetAlignment) assert.ok(question.statements.every((statement) => statement.targetScore === undefined), `${question.id} does not invent relative target scores`);
+  });
+});
 const questionnaire = questionnaires.find((item) => item.id === 'gha-02');
 const questions = flattenQuestions(questionnaire);
 assert.equal(questions.length, 65, 'GHA Simulation #2 has sixty-five questions');
@@ -38,9 +48,15 @@ const answers = Object.fromEntries(questions.map((question) => {
   return [question.id, { most: items[0].id, least: items[1].id }];
 }));
 const attempt = { questionnaireId: questionnaire.id, startedAt: '2026-01-01T00:00:00.000Z', completedAt: '2026-01-01T00:10:00.000Z', completionReason: 'completed', answers };
-const result = buildResult(questionnaire, questions, attempt);
+const analysis = analyzeAssessment(questionnaire, questions, answers, profile);
+assert.ok(Number.isInteger(analysis.consistency.overall), 'consistency analysis produces a percentage');
+assert.ok(Number.isInteger(analysis.targetProfileAlignment.overall), 'target alignment analysis produces a percentage');
+assert.ok(Object.keys(analysis.targetProfileAlignment.byTrait).length > 0, 'target alignment includes traits');
+const result = buildResult(questionnaire, questions, attempt, analysis);
 assert.equal(result.answers.length, questions.length, 'JSON export contains every question');
 assert.ok(result.answers.some((answer) => answer.traits), 'JSON export preserves hidden metadata');
+assert.deepEqual(result.analysis, analysis, 'JSON export contains the complete analysis');
+assert.deepEqual(analyzeExportedResult(questionnaire, questions, { answers: result.answers }, profile), analysis, 'legacy-style exports without analysis remain scoreable');
 const perStatementQuestion = questions.find((question) => question.type === 'most-least' && question.selectionMode !== 'pick-one-each');
 const perStatementHtml = questionRenderers['most-least'](perStatementQuestion, null, false);
 assert.equal((perStatementHtml.match(/name="statement-/g) ?? []).length, perStatementQuestion.statements.length * 2, 'each statement renders its own radio group');
@@ -60,7 +76,20 @@ assert.equal(result.answers.find((answer) => answer.questionId === perActionQues
 const csv = resultToCsv(result);
 assert.ok(csv.includes('questionnaire_id') && csv.includes(questionnaire.id) && csv.includes('traits'), 'CSV export is structured and includes metadata');
 
-assert.throws(() => validateQuestionnaire({ id: 'bad', title: 'Bad', sections: [{ id: 'x', title: 'X', questions: [{ id: 'q', type: 'unknown' }] }] }, 'bad'), /unsupported type/, 'unsupported types fail clearly');
+assert.throws(() => validateQuestionnaire({ id: 'bad', title: 'Bad', scoring: { profile: 'google-practice-2026', version: 1 }, sections: [{ id: 'x', title: 'X', questions: [{ id: 'q', type: 'unknown' }] }] }, 'bad'), /unsupported type/, 'unsupported types fail clearly');
+
+const likertQuestionnaire = questionnaires.find((item) => item.id === 'gha-01');
+const likertQuestions = flattenQuestions(likertQuestionnaire);
+const grouped = Object.values(Object.groupBy(likertQuestions.filter((question) => question.consistencyGroup), (question) => question.consistencyGroup));
+const contradictionPair = grouped.find((group) => group.length >= 2).slice(0, 2);
+const contradictoryAnswers = {};
+contradictionPair.forEach((question, index) => {
+  const polarity = question.analysis.polarity;
+  const desiredNormalized = index === 0 ? 2 : -2;
+  contradictoryAnswers[question.id] = String(desiredNormalized * polarity === 2 ? 4 : 0);
+});
+const contradictionAnalysis = analyzeAssessment(likertQuestionnaire, likertQuestions, contradictoryAnswers, profile);
+assert.equal(contradictionAnalysis.consistency.contradictions.length, 1, 'opposing normalized answers are flagged as a contradiction');
 
 const indexHtml = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 assert.ok(indexHtml.includes('type="module"') && indexHtml.includes('reset-dialog'), 'application shell includes module entry and reset confirmation');

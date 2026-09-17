@@ -1,0 +1,20 @@
+{
+  "id": "google-practice-2026",
+  "name": "Google-style Work Profile Practice",
+  "version": 1,
+  "disclaimer": "Target Profile Alignment is a practice metric based on the simulator's training profile. It is not an official Google score and does not predict the actual hiring outcome.",
+  "traits": {
+    "ownership": { "weight": 1 },
+    "reliability": { "weight": 1 },
+    "communication": { "weight": 1 },
+    "collaboration": { "weight": 1 },
+    "adaptability": { "weight": 1 },
+    "ambiguityTolerance": { "weight": 1 },
+    "problemSolving": { "weight": 1 },
+    "learning": { "weight": 1 },
+    "quality": { "weight": 1 },
+    "integrity": { "weight": 1 },
+    "inclusion": { "weight": 1 },
+    "decisiveness": { "weight": 1 }
+  }
+}

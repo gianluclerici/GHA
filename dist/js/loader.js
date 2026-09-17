@@ -4,6 +4,10 @@ function requireValue(condition, message) {
   if (!condition) throw new Error(message);
 }
 
+function validateTargetScore(value, location) {
+  requireValue(Number.isInteger(value) && value >= -2 && value <= 2, `${location}.targetScore must be an integer from -2 to 2.`);
+}
+
 function validateQuestion(question, location) {
   requireValue(question && typeof question === 'object', `${location} must be an object.`);
   requireValue(typeof question.id === 'string' && question.id.trim(), `${location}.id is required.`);
@@ -13,11 +17,16 @@ function validateQuestion(question, location) {
     requireValue(typeof question.text === 'string' && question.text.trim(), `${location}.text is required.`);
     requireValue(Array.isArray(question.options) && question.options.length >= 2, `${location}.options must contain at least two labels.`);
     requireValue(question.options.every((option) => typeof option === 'string' && option.trim()), `${location}.options must contain non-empty strings.`);
+    requireValue(question.analysis?.polarity === 1 || question.analysis?.polarity === -1, `${location}.analysis.polarity must be 1 or -1.`);
   }
 
   if (question.type === 'most-least') {
     requireValue(Array.isArray(question.statements) && question.statements.length >= 2, `${location}.statements must contain at least two items.`);
     validateChoices(question.statements, `${location}.statements`);
+    requireValue(question.excludeFromTargetAlignment == null || typeof question.excludeFromTargetAlignment === 'boolean', `${location}.excludeFromTargetAlignment must be a boolean.`);
+    question.statements.forEach((statement, index) => {
+      if (statement.targetScore !== undefined) validateTargetScore(statement.targetScore, `${location}.statements[${index}]`);
+    });
     requireValue(question.selectionMode == null || ['pick-one-each', 'per-statement'].includes(question.selectionMode), `${location}.selectionMode must be “pick-one-each” or “per-statement”.`);
   }
 
@@ -25,6 +34,7 @@ function validateQuestion(question, location) {
     requireValue(typeof question.scenario === 'string' && question.scenario.trim(), `${location}.scenario is required.`);
     requireValue(Array.isArray(question.actions) && question.actions.length >= 2, `${location}.actions must contain at least two items.`);
     validateChoices(question.actions, `${location}.actions`);
+    question.actions.forEach((action, index) => validateTargetScore(action.targetScore, `${location}.actions[${index}]`));
     requireValue(['single', 'most-least'].includes(question.responseMode), `${location}.responseMode must be “single” or “most-least”.`);
     requireValue(question.selectionMode == null || (question.responseMode === 'most-least' && ['pick-one-each', 'per-action'].includes(question.selectionMode)), `${location}.selectionMode must be “pick-one-each” or “per-action” for a most-least situational question.`);
   }
@@ -53,6 +63,9 @@ export function validateQuestionnaire(questionnaire, expectedId) {
   requireValue(questionnaire.durationMinutes == null || (Number.isFinite(questionnaire.durationMinutes) && questionnaire.durationMinutes > 0), 'durationMinutes must be null or a positive number.');
   requireValue(questionnaire.allowBack == null || typeof questionnaire.allowBack === 'boolean', 'allowBack must be a boolean.');
   requireValue(questionnaire.randomizeQuestions == null || typeof questionnaire.randomizeQuestions === 'boolean', 'randomizeQuestions must be a boolean.');
+  requireValue(questionnaire.scoring && typeof questionnaire.scoring === 'object' && !Array.isArray(questionnaire.scoring), 'scoring metadata is required.');
+  requireValue(typeof questionnaire.scoring.profile === 'string' && questionnaire.scoring.profile.trim(), 'scoring.profile is required.');
+  requireValue(Number.isInteger(questionnaire.scoring.version) && questionnaire.scoring.version > 0, 'scoring.version must be a positive integer.');
   requireValue(questionnaire.warningThresholdsMinutes == null || (Array.isArray(questionnaire.warningThresholdsMinutes) && questionnaire.warningThresholdsMinutes.every((value) => Number.isFinite(value) && value > 0)), 'warningThresholdsMinutes must contain positive numbers.');
 
   const sectionIds = new Set();

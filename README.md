@@ -16,7 +16,7 @@ Open <http://localhost:8000>. A web server is required because browsers normally
 
 ## Add `gha-02.json`
 
-1. Duplicate `dist/questionnaires/example.json` as `dist/questionnaires/gha-02.json`.
+1. Create `dist/questionnaires/gha-02.json` using the schema below and one of the existing questionnaires as a structural reference.
 2. Set its `id` to `gha-02`, add sections and questions, and validate the JSON.
 3. Add an entry to `dist/questionnaires/index.json`:
 
@@ -45,6 +45,7 @@ Top-level fields:
 | `warningThresholdsMinutes` | number[] | no | Defaults to `[5, 1]`. |
 | `allowBack` | boolean | no | Enables the Previous button. Defaults to false-like behavior. |
 | `randomizeQuestions` | boolean | no | Order is shuffled once, then persisted. |
+| `scoring` | object | yes | Hidden profile id and scoring-metadata version. |
 | `sections` | array | yes | Each section needs a unique `id`, `title`, and non-empty `questions`. |
 
 Every question requires a unique `id` and supported `type`. Optional `traits` may contain any string keys with JSON values; the engine never hardcodes trait names. Optional `consistencyGroup` is also preserved. Both fields stay hidden during the assessment and basic review, and are included in exports.
@@ -97,11 +98,19 @@ For a most/least situational question, every action row receives its own **Most 
 }
 ```
 
+## Scoring model
+
+Scoring runs only after completion and lives in `dist/scoring.js`, independently from rendering and navigation. Likert labels map to `-2..+2`; each answer is multiplied by `analysis.polarity`, then target alignment maps the normalized value linearly onto `0..100`. Consistency uses the mean pairwise absolute difference within each `consistencyGroup`, also mapped to `0..100`, so consistency remains independent from desirability.
+
+Situational actions may carry a hidden integer `targetScore` from `-2` to `+2`. Most/least selections score both directions. A most/least question without a defensible relative ranking is marked `excludeFromTargetAlignment: true` instead of receiving invented scores. Profile weights are defined in `dist/scoring-profiles/google-practice-2026.json` and are initially equal.
+
 ## Persistence and exports
 
 Attempts are stored per questionnaire in browser `localStorage`. This includes the stable question order, current position, answers, start time, and completion state. A timed attempt therefore continues across refreshes. Reset removes that questionnaire's local attempt after confirmation.
 
-JSON exports contain question text, choice labels, response ids, section context, traits, and consistency groups for later analysis. CSV exports flatten the same information into a human-readable table. The simulator deliberately produces no score, recommendation, or pass/fail result.
+After completion, the simulator calculates two practice metrics: a Consistency Score and Target Profile Alignment. The latter uses the versioned `google-practice-2026` training profile; it is not an official Google score and does not predict a hiring outcome. Hidden scoring metadata is never shown while an assessment is in progress.
+
+JSON exports contain question text, choice labels, response ids, section context, traits, consistency groups, and the complete `analysis` object. CSV exports keep the response-oriented table format. Neither metric is a pass/fail result.
 
 Progress belongs to the browser profile and device. Hosting makes the application accessible from multiple devices, but progress does not sync between them because the project intentionally has no account system or backend.
 
@@ -115,6 +124,8 @@ Progress belongs to the browser profile and device. Hosting makes the applicatio
 - `dist/js/timer.js` — refresh-safe countdown logic
 - `dist/js/renderers.js` — renderer registry and response parsing
 - `dist/js/exporter.js` — structured JSON and CSV generation
+- `dist/scoring.js` — consistency and target-alignment analysis engine
+- `dist/scoring-profiles/` — versioned target profiles
 - `dist/questionnaires/` — content-only catalog and questionnaires
 
 ## Hosting

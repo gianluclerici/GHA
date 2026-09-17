@@ -34,7 +34,7 @@ function perActionExport(question, answer) {
   return { selectionMode: 'per-action', responses, answerText };
 }
 
-export function buildResult(questionnaire, questions, attempt) {
+export function buildResult(questionnaire, questions, attempt, analysis = null) {
   return {
     schemaVersion: 1,
     questionnaireId: questionnaire.id,
@@ -43,6 +43,7 @@ export function buildResult(questionnaire, questions, attempt) {
     completedAt: attempt.completedAt,
     completionReason: attempt.completionReason,
     durationSeconds: attempt.durationSeconds ?? Math.max(0, Math.floor((Date.parse(attempt.completedAt) - Date.parse(attempt.startedAt)) / 1000)),
+    ...(analysis ? { analysis } : {}),
     answers: questions.map((question) => {
       const answer = attempt.answers[question.id] ?? null;
       return {

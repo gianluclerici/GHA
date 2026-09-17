@@ -97,6 +97,22 @@ h1 { max-width: 720px; margin: 0; font-size: clamp(2rem, 5vw, 3.4rem); line-heig
 .completion-mark { display: grid; place-items: center; width: 56px; height: 56px; margin-bottom: 1.5rem; border-radius: 50%; color: #fff; background: var(--success); font-size: 1.6rem; font-weight: 800; }
 .completion-summary { margin: 1.25rem 0; font-size: 1.15rem; font-weight: 700; }
 .completion-actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 2rem; }
+.analysis-panel { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+.analysis-loading { color: var(--muted); }
+.analysis-heading h2, .analysis-section h3 { margin: 0; }
+.metric-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1rem 0 1.5rem; }
+.metric-card { padding: 1.1rem; border: 1px solid var(--line); border-radius: 12px; background: #f8fafc; }
+.metric-card span, .metric-card small { display: block; color: var(--muted); }
+.metric-card strong { display: block; margin: .15rem 0; color: var(--navy); font-size: 2rem; line-height: 1.15; }
+.analysis-section { margin-top: 1.5rem; }
+.table-scroll { margin-top: .7rem; overflow-x: auto; }
+.trait-table { width: 100%; border-collapse: collapse; text-align: left; }
+.trait-table th, .trait-table td { padding: .65rem .7rem; border-bottom: 1px solid var(--line); }
+.trait-table thead th { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; }
+.review-flags { margin: .7rem 0 0; padding-left: 1.3rem; }
+.review-flags li + li { margin-top: .45rem; }
+.flag-answer { display: block; margin-top: .2rem; color: var(--muted); }
+.analysis-disclaimer { margin: 1.6rem 0 0; padding: .9rem 1rem; border-left: 4px solid #d39100; color: var(--muted); background: #fff8e5; font-size: .9rem; }
 .review-list { display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; counter-reset: review; }
 .review-card { padding: 1.35rem; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
 .review-card h2 { margin: .35rem 0 .8rem; font-size: 1.08rem; }
@@ -120,6 +136,7 @@ h1 { max-width: 720px; margin: 0; font-size: clamp(2rem, 5vw, 3.4rem); line-heig
   .assessment-card { grid-template-columns: 1fr; }
   .assessment-card .button { width: 100%; }
   .card-actions, .completion-actions { align-items: stretch; flex-direction: column; }
+  .metric-grid { grid-template-columns: 1fr; }
   .assessment-facts { grid-template-columns: 1fr; }
   .assessment-facts div + div { border-top: 1px solid var(--line); border-left: 0; }
   .assessment-toolbar { align-items: flex-start; }

@@ -3,12 +3,13 @@ import { loadAttempt, saveAttempt, removeAttempt, summarizeAttempt } from './js/
 import { AssessmentTimer, formatClock, formatDuration } from './js/timer.js';
 import { buildResult, resultToCsv, downloadFile } from './js/exporter.js';
 import { questionRenderers, readAnswer, answerSummary } from './js/renderers.js';
+import { analyzeAssessment, loadScoringProfile } from './scoring.js';
 
 const app = document.querySelector('#app');
 const toastRegion = document.querySelector('#toast-region');
 const resetDialog = document.querySelector('#reset-dialog');
 
-const state = { catalog: [], entry: null, questionnaire: null, questions: [], attempt: null, pendingResetId: null };
+const state = { catalog: [], entry: null, questionnaire: null, questions: [], attempt: null, pendingResetId: null, analysis: null, scoringProfile: null };
 
 function escapeText(value) {
   return String(value ?? '').replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[character]);
@@ -53,7 +54,7 @@ function orderedQuestions(questionnaire, order) {
 
 function renderHome() {
   timer.stop();
-  Object.assign(state, { entry: null, questionnaire: null, questions: [], attempt: null });
+  Object.assign(state, { entry: null, questionnaire: null, questions: [], attempt: null, analysis: null, scoringProfile: null });
   setDocumentTitle();
   history.replaceState({}, '', location.pathname);
   app.innerHTML = `<section class="shell" aria-labelledby="page-title">
@@ -83,6 +84,8 @@ async function openAssessment(questionnaireId) {
     state.entry = entry;
     state.questionnaire = questionnaire;
     state.attempt = savedAttempt;
+    state.analysis = null;
+    state.scoringProfile = null;
     state.questions = savedAttempt ? orderedQuestions(questionnaire, savedAttempt.questionOrder) : flattenQuestions(questionnaire);
     history.replaceState({}, '', `${location.pathname}?assessment=${encodeURIComponent(entry.id)}`);
     if (savedAttempt?.completedAt) renderCompletion();
@@ -186,7 +189,56 @@ function renderCompletion() {
   const answered = Object.keys(state.attempt.answers).length;
   const elapsed = state.attempt.durationSeconds ?? Math.max(0, Math.floor((Date.parse(state.attempt.completedAt) - Date.parse(state.attempt.startedAt)) / 1000));
   const timedOut = state.attempt.completionReason === 'time-expired';
-  app.innerHTML = `<section class="shell compact-shell" aria-labelledby="completion-title"><div class="completion-card"><div class="completion-mark" aria-hidden="true">✓</div><div class="eyebrow">${timedOut ? 'Time expired' : 'Attempt saved'}</div><h1 id="completion-title">Assessment completed</h1><p class="completion-summary">${answered} / ${state.questions.length} questions answered<br />Time used: ${formatDuration(elapsed)}</p><p class="lede">No score or pass/fail result is generated. Export the complete response data for separate analysis.</p><div class="completion-actions"><button class="button button-primary" type="button" data-action="download-json">Download results JSON</button><button class="button button-secondary" type="button" data-action="download-csv">Download results CSV</button><button class="button button-secondary" type="button" data-action="review">Review answers</button><button class="button button-quiet" type="button" data-action="home">Return to assessments</button></div></div></section>`;
+  app.innerHTML = `<section class="shell" aria-labelledby="completion-title"><div class="completion-card"><div class="completion-mark" aria-hidden="true">✓</div><div class="eyebrow">${timedOut ? 'Time expired' : 'Attempt saved'}</div><h1 id="completion-title">Assessment completed</h1><p class="completion-summary">${answered} / ${state.questions.length} questions answered<br />Time used: ${formatDuration(elapsed)}</p><p class="lede">Your responses have been analyzed for practice consistency and target-profile alignment. These are training indicators, not a pass/fail result.</p><div id="analysis-panel" class="analysis-panel" aria-live="polite"><p class="analysis-loading">Preparing analysis…</p></div><div class="completion-actions"><button class="button button-primary" type="button" data-action="download-json">Download results JSON</button><button class="button button-secondary" type="button" data-action="download-csv">Download results CSV</button><button class="button button-secondary" type="button" data-action="review">Review answers</button><button class="button button-quiet" type="button" data-action="home">Return to assessments</button></div></div></section>`;
+  void hydrateAnalysisPanel();
+}
+
+async function ensureAnalysis() {
+  if (state.analysis && state.scoringProfile) return state.analysis;
+  const profileId = state.questionnaire.scoring?.profile;
+  if (!profileId) throw new Error('This assessment does not define a scoring profile.');
+  const profile = await loadScoringProfile(profileId);
+  state.scoringProfile = profile;
+  state.analysis = analyzeAssessment(state.questionnaire, state.questions, state.attempt.answers, profile);
+  return state.analysis;
+}
+
+function metricValue(value) {
+  return value == null ? 'N/A' : `${value}%`;
+}
+
+function traitLabel(value) {
+  return String(value).replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, (letter) => letter.toUpperCase());
+}
+
+function traitRows(analysis) {
+  const traits = new Set([
+    ...Object.keys(analysis.targetProfileAlignment.byTrait),
+    ...Object.keys(analysis.consistency.byTrait)
+  ]);
+  return [...traits].sort().map((trait) => `<tr><th scope="row">${escapeText(traitLabel(trait))}</th><td>${metricValue(analysis.targetProfileAlignment.byTrait[trait])}</td><td>${metricValue(analysis.consistency.byTrait[trait])}</td></tr>`).join('');
+}
+
+function analysisMarkup(analysis, profile) {
+  const lowAlignment = analysis.targetProfileAlignment.lowestAlignmentQuestions.filter((item) => item.score < 50);
+  const contradictions = analysis.consistency.contradictions;
+  const reviewItems = [
+    ...lowAlignment.slice(0, 4).map((item) => `<li><strong>Low alignment (${item.score}%):</strong> ${escapeText(item.question)}<span class="flag-answer">Response: ${escapeText(item.responses.map((response) => response.subject ? `${response.subject} — ${response.answer}` : response.answer).join('; '))}</span></li>`),
+    ...contradictions.slice(0, 4).map((item) => `<li><strong>Consistency review:</strong><span class="flag-answer">${escapeText(item.questions[0].question)} — ${escapeText(item.questions[0].answer)}</span><span class="flag-answer">${escapeText(item.questions[1].question)} — ${escapeText(item.questions[1].answer)}</span></li>`)
+  ];
+  return `<div class="analysis-heading"><div class="eyebrow">Practice analysis</div><h2>Assessment analysis</h2></div><div class="metric-grid"><article class="metric-card"><span>Consistency Score</span><strong>${metricValue(analysis.consistency.overall)}</strong><small>${analysis.consistency.groupsAnalyzed} consistency groups analyzed</small></article><article class="metric-card"><span>Target Profile Alignment</span><strong>${metricValue(analysis.targetProfileAlignment.overall)}</strong><small>${analysis.targetProfileAlignment.questionsAnalyzed} scored questions</small></article></div><div class="analysis-section"><h3>Trait breakdown</h3><div class="table-scroll"><table class="trait-table"><thead><tr><th>Trait</th><th>Alignment</th><th>Consistency</th></tr></thead><tbody>${traitRows(analysis)}</tbody></table></div></div><div class="analysis-section"><h3>Areas to review</h3>${reviewItems.length ? `<ul class="review-flags">${reviewItems.join('')}</ul>` : '<p>No material low-alignment or contradiction flags were detected.</p>'}</div><p class="analysis-disclaimer">${escapeText(profile.disclaimer)}</p>`;
+}
+
+async function hydrateAnalysisPanel() {
+  const panel = document.querySelector('#analysis-panel');
+  if (!panel) return;
+  try {
+    const analysis = await ensureAnalysis();
+    if (panel.isConnected) panel.innerHTML = analysisMarkup(analysis, state.scoringProfile);
+  } catch (error) {
+    console.error('[GHA Simulator] Analysis failed.', error);
+    if (panel.isConnected) panel.innerHTML = `<p class="form-error">Analysis could not be prepared: ${escapeText(error.message)}</p>`;
+  }
 }
 
 function renderReview() {
@@ -195,8 +247,11 @@ function renderReview() {
   app.innerHTML = `<section class="shell" aria-labelledby="review-title"><button class="text-button back-link" type="button" data-action="completion">← Completion summary</button><div class="eyebrow">Completed attempt</div><h1 id="review-title">Review answers</h1><p class="lede">This review shows only your responses. Analysis metadata remains hidden.</p><ol class="review-list">${state.questions.map((question, index) => `<li class="review-card"><div class="review-meta">${escapeText(question.sectionTitle)} · Question ${index + 1}</div><h2>${escapeText(question.type === 'situational' ? question.scenario : question.text ?? 'Most / least choice')}</h2><p><strong>Your answer:</strong> ${escapeText(answerSummary(question, state.attempt.answers[question.id]))}</p></li>`).join('')}</ol></section>`;
 }
 
-function exportResults(format) {
-  const result = buildResult(state.questionnaire, state.questions, state.attempt);
+async function exportResults(format) {
+  let analysis = null;
+  try { analysis = await ensureAnalysis(); }
+  catch (error) { showToast(`Analysis unavailable: ${error.message}`, 'warning'); }
+  const result = buildResult(state.questionnaire, state.questions, state.attempt, analysis);
   const stem = `${state.questionnaire.id}-results`;
   if (format === 'json') downloadFile(`${stem}.json`, `${JSON.stringify(result, null, 2)}\n`, 'application/json;charset=utf-8');
   else downloadFile(`${stem}.csv`, resultToCsv(result), 'text/csv;charset=utf-8');
@@ -264,8 +319,8 @@ app.addEventListener('click', (event) => {
   if (action === 'previous') previousQuestion();
   if (action === 'completion') renderCompletion();
   if (action === 'review') renderReview();
-  if (action === 'download-json') exportResults('json');
-  if (action === 'download-csv') exportResults('csv');
+  if (action === 'download-json') void exportResults('json');
+  if (action === 'download-csv') void exportResults('csv');
   if (action === 'ask-reset') askReset(button.dataset.id);
 });
 

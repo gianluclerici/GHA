@@ -50,7 +50,8 @@
               "learning",
               "collaboration"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-02",
@@ -85,7 +86,8 @@
               "integrity",
               "ambiguityTolerance"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-03",
@@ -120,7 +122,8 @@
               "communication",
               "adaptability"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-04",
@@ -155,7 +158,8 @@
               "quality",
               "learning"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-05",
@@ -190,7 +194,8 @@
               "reliability",
               "decisiveness"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-06",
@@ -225,7 +230,8 @@
               "integrity",
               "communication"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-07",
@@ -260,7 +266,8 @@
               "problemSolving",
               "learning"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-08",
@@ -295,7 +302,8 @@
               "quality",
               "ownership"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-09",
@@ -330,7 +338,8 @@
               "decisiveness",
               "reliability"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-10",
@@ -365,7 +374,8 @@
               "inclusion",
               "collaboration"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-11",
@@ -400,7 +410,8 @@
               "quality",
               "ownership"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-12",
@@ -435,7 +446,8 @@
               "communication",
               "decisiveness"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-13",
@@ -470,7 +482,8 @@
               "problemSolving",
               "learning"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-14",
@@ -505,7 +518,8 @@
               "adaptability",
               "quality"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-15",
@@ -540,7 +554,8 @@
               "communication",
               "inclusion"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-16",
@@ -575,7 +590,8 @@
               "integrity",
               "problemSolving"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-17",
@@ -610,7 +626,8 @@
               "adaptability",
               "reliability"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-18",
@@ -645,7 +662,8 @@
               "collaboration",
               "ambiguityTolerance"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-19",
@@ -680,7 +698,8 @@
               "ownership",
               "problemSolving"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         },
         {
           "id": "gha-02-fc-20",
@@ -715,7 +734,8 @@
               "learning",
               "decisiveness"
             ]
-          }
+          },
+          "excludeFromTargetAlignment": true
         }
       ]
     },
@@ -1313,28 +1333,32 @@
               "traits": {
                 "integrity": 1,
                 "quality": 1
-              }
+              },
+              "targetScore": 2
             },
             {
               "id": "b",
               "text": "Launch first because the risk affects only a small number of users.",
               "traits": {
                 "integrity": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Document the risk privately and revisit it after launch.",
               "traits": {
                 "ownership": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Remove the feature without telling the project owner.",
               "traits": {
                 "communication": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1352,28 +1376,32 @@
               "text": "Decline to share it until the required approvals and protections are in place.",
               "traits": {
                 "integrity": 1
-              }
+              },
+              "targetScore": 1
             },
             {
               "id": "b",
               "text": "Share only the parts that seem harmless.",
               "traits": {
                 "integrity": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Send it if the partner promises not to redistribute it.",
               "traits": {
                 "integrity": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Ask the colleague to send it instead.",
               "traits": {
                 "integrity": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1392,28 +1420,32 @@
               "traits": {
                 "ownership": 1,
                 "communication": 1
-              }
+              },
+              "targetScore": 2
             },
             {
               "id": "b",
               "text": "Work silently and hope to recover the schedule.",
               "traits": {
                 "communication": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Blame the changing requirements for the miss.",
               "traits": {
                 "ownership": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Reduce testing without telling anyone.",
               "traits": {
                 "quality": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1431,28 +1463,32 @@
               "text": "Support the decision while continuing to share new evidence if it becomes relevant.",
               "traits": {
                 "collaboration": 1
-              }
+              },
+              "targetScore": 1
             },
             {
               "id": "b",
               "text": "Continue arguing until the team adopts your preferred option.",
               "traits": {
                 "collaboration": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Implement your own approach in parallel.",
               "traits": {
                 "ownership": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Withdraw from the work because you disagree.",
               "traits": {
                 "collaboration": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1471,28 +1507,32 @@
               "traits": {
                 "collaboration": 1,
                 "reliability": 1
-              }
+              },
+              "targetScore": 2
             },
             {
               "id": "b",
               "text": "Drop your current task immediately without checking priorities.",
               "traits": {
                 "reliability": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Ignore the request until your work is complete.",
               "traits": {
                 "collaboration": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Tell them to ask someone more junior.",
               "traits": {
                 "collaboration": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1511,28 +1551,32 @@
               "traits": {
                 "ambiguityTolerance": 1,
                 "ownership": 1
-              }
+              },
+              "targetScore": 2
             },
             {
               "id": "b",
               "text": "Wait until a manager assigns every responsibility.",
               "traits": {
                 "ambiguityTolerance": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Start changing things immediately without understanding dependencies.",
               "traits": {
                 "problemSolving": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Limit yourself to tasks that are already documented.",
               "traits": {
                 "ownership": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1551,28 +1595,32 @@
               "traits": {
                 "learning": 1,
                 "inclusion": 1
-              }
+              },
+              "targetScore": 2
             },
             {
               "id": "b",
               "text": "Ask them to discuss it privately later because they are junior.",
               "traits": {
                 "inclusion": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Defend the proposal strongly so the team does not lose confidence.",
               "traits": {
                 "learning": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Ignore the concern unless a senior teammate agrees.",
               "traits": {
                 "inclusion": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1591,28 +1639,32 @@
               "traits": {
                 "ambiguityTolerance": 1,
                 "communication": 1
-              }
+              },
+              "targetScore": 2
             },
             {
               "id": "b",
               "text": "Choose randomly so they are not blocked.",
               "traits": {
                 "decisiveness": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Tell them you cannot help until you are certain.",
               "traits": {
                 "ambiguityTolerance": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Forward the question to a senior person without context.",
               "traits": {
                 "communication": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1631,28 +1683,32 @@
               "traits": {
                 "problemSolving": 1,
                 "ownership": 1
-              }
+              },
+              "targetScore": 2
             },
             {
               "id": "b",
               "text": "Keep using the workaround because it is already known to work.",
               "traits": {
                 "problemSolving": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Automate the workaround without understanding the underlying cause.",
               "traits": {
                 "problemSolving": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Stop fixing it so someone else will notice the problem.",
               "traits": {
                 "ownership": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1671,28 +1727,32 @@
               "traits": {
                 "problemSolving": 1,
                 "quality": 1
-              }
+              },
+              "targetScore": 2
             },
             {
               "id": "b",
               "text": "Highlight the result because it supports the team's goals.",
               "traits": {
                 "integrity": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Remove it because it is probably wrong.",
               "traits": {
                 "problemSolving": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Wait for someone else to question it.",
               "traits": {
                 "ownership": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1711,28 +1771,32 @@
               "traits": {
                 "communication": 1,
                 "collaboration": 1
-              }
+              },
+              "targetScore": 2
             },
             {
               "id": "b",
               "text": "Avoid critical feedback because there is little time to change anything.",
               "traits": {
                 "learning": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Rewrite the work yourself without explaining the changes.",
               "traits": {
                 "collaboration": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Give detailed feedback on every minor issue regardless of deadline.",
               "traits": {
                 "decisiveness": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1751,28 +1815,32 @@
               "traits": {
                 "decisiveness": 1,
                 "ownership": 1
-              }
+              },
+              "targetScore": 2
             },
             {
               "id": "b",
               "text": "Wait for a senior leader to decide.",
               "traits": {
                 "decisiveness": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Make the decision but avoid documenting it.",
               "traits": {
                 "communication": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Ask several leaders separately until one agrees with your preference.",
               "traits": {
                 "integrity": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1791,28 +1859,32 @@
               "traits": {
                 "integrity": 1,
                 "problemSolving": 1
-              }
+              },
+              "targetScore": 2
             },
             {
               "id": "b",
               "text": "Make the exception because the customer is important.",
               "traits": {
                 "integrity": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Reject the request without explaining why.",
               "traits": {
                 "communication": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Implement the exception temporarily and remove it later.",
               "traits": {
                 "integrity": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1831,28 +1903,32 @@
               "traits": {
                 "collaboration": 1,
                 "integrity": 1
-              }
+              },
+              "targetScore": 2
             },
             {
               "id": "b",
               "text": "Fix it quietly so leadership never finds out.",
               "traits": {
                 "integrity": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Tell leadership immediately before speaking with the teammate.",
               "traits": {
                 "collaboration": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Distance yourself from the issue.",
               "traits": {
                 "ownership": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1871,28 +1947,32 @@
               "traits": {
                 "communication": 1,
                 "ownership": 1
-              }
+              },
+              "targetScore": 2
             },
             {
               "id": "b",
               "text": "Stop attending because the meetings are inefficient.",
               "traits": {
                 "collaboration": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "c",
               "text": "Let the most senior person control the discussion.",
               "traits": {
                 "inclusion": -1
-              }
+              },
+              "targetScore": -1
             },
             {
               "id": "d",
               "text": "Say nothing because meeting structure is the organizer's responsibility.",
               "traits": {
                 "ownership": -1
-              }
+              },
+              "targetScore": -1
             }
           ],
           "analysis": {
@@ -1901,5 +1981,9 @@
         }
       ]
     }
-  ]
+  ],
+  "scoring": {
+    "profile": "google-practice-2026",
+    "version": 1
+  }
 }

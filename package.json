@@ -4,6 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node tools/smoke-tests.mjs"
+    "test": "node tools/verify-scoring-migration.mjs && node tools/smoke-tests.mjs"
   }
 }

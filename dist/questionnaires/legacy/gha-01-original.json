@@ -1251,9 +1251,5 @@
         }
       ]
     }
-  ],
-  "scoring": {
-    "profile": "google-practice-2026",
-    "version": 1
-  }
+  ]
 }
