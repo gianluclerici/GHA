@@ -59,13 +59,13 @@ function renderActionRatings(question, answer, disabled) {
 }
 
 function renderMostLeast(question, answer, disabled) {
-  if (question.selectionMode === 'per-statement') return renderStatementRatings(question, answer, disabled);
+  if (question.selectionMode !== 'pick-one-each') return renderStatementRatings(question, answer, disabled);
   return renderPairedChoices(question.statements, answer, disabled, 'Which statements are most and least like you?');
 }
 
 function renderSituational(question, answer, disabled) {
   if (question.responseMode === 'most-least') {
-    if (question.selectionMode === 'per-action') return renderActionRatings(question, answer, disabled);
+    if (question.selectionMode !== 'pick-one-each') return renderActionRatings(question, answer, disabled);
     return renderPairedChoices(question.actions, answer, disabled, question.scenario);
   }
   return `<fieldset class="question-fieldset" ${disabled ? 'disabled' : ''}>
@@ -88,12 +88,12 @@ export const questionRenderers = {
 };
 
 export function readAnswer(question, form) {
-  if (question.type === 'most-least' && question.selectionMode === 'per-statement') {
+  if (question.type === 'most-least' && question.selectionMode !== 'pick-one-each') {
     const selections = Object.fromEntries(question.statements.map((statement) => [statement.id, form.elements.namedItem(`statement-${statement.id}`)?.value ?? '']));
     if (Object.values(selections).some((selection) => !['most', 'least'].includes(selection))) return null;
     return { selections };
   }
-  if (question.type === 'situational' && question.responseMode === 'most-least' && question.selectionMode === 'per-action') {
+  if (question.type === 'situational' && question.responseMode === 'most-least' && question.selectionMode !== 'pick-one-each') {
     const selections = Object.fromEntries(question.actions.map((action) => [action.id, form.elements.namedItem(`action-${action.id}`)?.value ?? '']));
     if (Object.values(selections).some((selection) => !['most', 'least'].includes(selection))) return null;
     return { selections };
@@ -112,11 +112,11 @@ export function answerSummary(question, answer) {
   if (question.type === 'likert') return question.options[Number(answer)] ?? 'No answer recorded';
   const items = question.type === 'most-least' ? question.statements : question.actions;
   const find = (id) => items.find((item) => item.id === id)?.text ?? id;
-  if (question.type === 'most-least' && question.selectionMode === 'per-statement') {
+  if (question.type === 'most-least' && question.selectionMode !== 'pick-one-each') {
     if (!answer?.selections || question.statements.some((statement) => !answer.selections[statement.id])) return 'No answer recorded';
     return question.statements.map((statement) => `${statement.text}: ${answer.selections[statement.id] === 'most' ? 'Most like me' : 'Least like me'}`).join(' · ');
   }
-  if (question.type === 'situational' && question.responseMode === 'most-least' && question.selectionMode === 'per-action') {
+  if (question.type === 'situational' && question.responseMode === 'most-least' && question.selectionMode !== 'pick-one-each') {
     if (!answer?.selections || question.actions.some((action) => !answer.selections[action.id])) return 'No answer recorded';
     return question.actions.map((action) => `${action.text}: ${answer.selections[action.id] === 'most' ? 'Most likely' : 'Least likely'}`).join(' · ');
   }

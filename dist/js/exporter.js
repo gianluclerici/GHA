@@ -54,9 +54,9 @@ export function buildResult(questionnaire, questions, attempt) {
         choices: choicesFor(question),
         ...(question.traits ? { traits: question.traits } : {}),
         ...(question.consistencyGroup ? { consistencyGroup: question.consistencyGroup } : {}),
-        ...(question.type === 'most-least' && question.selectionMode === 'per-statement'
+        ...(question.type === 'most-least' && question.selectionMode !== 'pick-one-each'
           ? perStatementExport(question, answer)
-          : question.type === 'situational' && question.responseMode === 'most-least' && question.selectionMode === 'per-action'
+          : question.type === 'situational' && question.responseMode === 'most-least' && question.selectionMode !== 'pick-one-each'
           ? perActionExport(question, answer)
           : question.type === 'likert' || (question.type === 'situational' && question.responseMode === 'single')
           ? { answer, answerText: selectionLabel(question, answer) }

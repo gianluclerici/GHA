@@ -6,7 +6,7 @@
   "version": "2026-09-17",
   "durationMinutes": 30,
   "allowBack": false,
-  "randomizeQuestions": false,
+  "randomizeQuestions": true,
   "metadata": {
     "targetFormat": "2026-style Google Hiring Assessment practice",
     "questionCount": 65,
@@ -15,8 +15,7 @@
   "sections": [
     {
       "id": "forced-choice",
-      "name": "Work Style — Most Like Me / Least Like Me",
-      "instructions": "For each set of three statements, choose the statement that is MOST like you and the statement that is LEAST like you.",
+      "title": "Work Style — Most Like Me / Least Like Me",
       "questions": [
         {
           "id": "gha-02-fc-01",
@@ -722,7 +721,7 @@
     },
     {
       "id": "likert",
-      "name": "Work Style — Agreement Scale",
+      "title": "Work Style — Agreement Scale",
       "instructions": "Choose the response that best reflects how you generally behave at work.",
       "questions": [
         {
@@ -1299,8 +1298,8 @@
     },
     {
       "id": "situational",
-      "name": "Workplace Judgment",
-      "instructions": "For each scenario, choose the action you would be MOST likely to take and the action you would be LEAST likely to take.",
+      "title": "Workplace Judgment",
+      "instructions": "For each scenario, mark every action as MOST likely or LEAST likely.",
       "questions": [
         {
           "id": "gha-02-sjt-01",

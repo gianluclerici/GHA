@@ -77,12 +77,12 @@ Every question requires a unique `id` and supported `type`. Optional `traits` ma
 }
 ```
 
-`selectionMode: "per-statement"` requires one **Most like me** or **Least like me** response on every row. Use `"pick-one-each"` (or omit the field) for the classic forced-choice format where one statement is selected as most and another as least across the whole group.
+One **Most like me** or **Least like me** response is required on every row by default. `selectionMode: "per-statement"` makes that behavior explicit. Use `"pick-one-each"` only for the classic forced-choice format where one statement is selected as most and another as least across the whole group.
 
 ### Situational
 
 Use `responseMode: "single"` for one response or `responseMode: "most-least"` for paired selections.
-For a most/least situational question, add `selectionMode: "per-action"` when every action row must receive its own **Most likely** or **Least likely** response. Omit it, or use `"pick-one-each"`, for one most-likely and one least-likely action across the group.
+For a most/least situational question, every action row receives its own **Most likely** or **Least likely** response by default. `selectionMode: "per-action"` makes that behavior explicit. Use `"pick-one-each"` only for one most-likely and one least-likely action across the group.
 
 ```json
 {

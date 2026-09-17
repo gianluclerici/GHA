@@ -1,11 +1,8 @@
 {
   "id": "gha-01",
-  "title": "GHA Simulation #1 — Recruiter-Email Likert Format",
   "description": "65 Likert-style work-behavior items, matching the 60–70 Likert description in the recruiter email as closely as possible.",
-  "simulation": true,
-  "version": "2026-09-17",
+  "title": "GHA Simulation #1 — Recruiter-Email Likert Format",
   "durationMinutes": 30,
-  "allowBack": false,
   "randomizeQuestions": false,
   "metadata": {
     "targetFormat": "60–70 Likert-style items described by recruiter email",
@@ -15,8 +12,7 @@
   "sections": [
     {
       "id": "likert",
-      "name": "Work Style — Agreement Scale",
-      "instructions": "Choose the response that best reflects how you generally behave at work.",
+      "title": "Work Style — Agreement Scale",
       "questions": [
         {
           "id": "gha-01-lk-01",
