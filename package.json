@@ -1,0 +1,9 @@
+{
+  "name": "gha-simulator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tools/smoke-tests.mjs"
+  }
+}

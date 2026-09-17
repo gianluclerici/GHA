@@ -1,0 +1,8 @@
+[
+  {
+    "id": "gha-01",
+    "name": "GHA Simulator — Technical Sample",
+    "file": "gha-01.json",
+    "description": "A short technical sample used to verify each supported response format."
+  }
+]

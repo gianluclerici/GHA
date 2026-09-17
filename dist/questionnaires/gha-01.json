@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "id": "gha-01",
+  "title": "GHA Simulator — Technical Sample",
+  "description": "Synthetic prompts for validating the simulator. This is not an official or representative Google assessment.",
+  "durationMinutes": 15,
+  "warningThresholdsMinutes": [5, 1],
+  "allowBack": false,
+  "randomizeQuestions": false,
+  "sections": [
+    {
+      "id": "response-controls",
+      "title": "Response controls",
+      "questions": [
+        {
+          "id": "q01",
+          "type": "likert",
+          "text": "I can begin a low-risk task when some details are still being clarified.",
+          "options": ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"],
+          "traits": { "sampleTraitAlpha": 1 },
+          "consistencyGroup": "sample-pair-01"
+        },
+        {
+          "id": "q02",
+          "type": "likert",
+          "text": "I prefer to pause every task until all possible details are known.",
+          "options": ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"],
+          "traits": { "sampleTraitAlpha": -1 },
+          "consistencyGroup": "sample-pair-01"
+        },
+        {
+          "id": "q03",
+          "type": "likert",
+          "text": "I check important work before sharing it.",
+          "options": ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"],
+          "traits": { "sampleTraitBeta": 1 }
+        },
+        {
+          "id": "q04",
+          "type": "likert",
+          "text": "I communicate early when a commitment may change.",
+          "options": ["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"],
+          "traits": { "sampleTraitGamma": 1 }
+        }
+      ]
+    },
+    {
+      "id": "paired-selections",
+      "title": "Paired selections",
+      "questions": [
+        {
+          "id": "q05",
+          "type": "most-least",
+          "statements": [
+            { "id": "a", "text": "I organize the next steps before beginning." },
+            { "id": "b", "text": "I ask for input when it improves the result." },
+            { "id": "c", "text": "I adapt the plan when new information appears." }
+          ],
+          "traits": { "sampleTraitDelta": 1 }
+        },
+        {
+          "id": "q06",
+          "type": "most-least",
+          "statements": [
+            { "id": "a", "text": "I keep concise notes about key decisions." },
+            { "id": "b", "text": "I verify ownership before handing work over." },
+            { "id": "c", "text": "I raise a risk while there is still time to respond." }
+          ]
+        },
+        {
+          "id": "q07",
+          "type": "most-least",
+          "statements": [
+            { "id": "a", "text": "I prefer a clear checklist for repeated work." },
+            { "id": "b", "text": "I enjoy finding a simpler way to complete a task." },
+            { "id": "c", "text": "I make room for colleagues to explain their view." }
+          ]
+        },
+        {
+          "id": "q08",
+          "type": "most-least",
+          "statements": [
+            { "id": "a", "text": "I close small gaps before they become larger issues." },
+            { "id": "b", "text": "I focus first on the outcome with the highest impact." },
+            { "id": "c", "text": "I summarize decisions so others can act on them." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scenario-controls",
+      "title": "Scenario controls",
+      "questions": [
+        {
+          "id": "q09",
+          "type": "situational",
+          "responseMode": "single",
+          "scenario": "A test file contains an obvious formatting error shortly before an internal demonstration.",
+          "actions": [
+            { "id": "a", "text": "Correct it and record the change." },
+            { "id": "b", "text": "Leave it unchanged without telling anyone." },
+            { "id": "c", "text": "Cancel the demonstration immediately." }
+          ],
+          "traits": { "sampleTraitBeta": 1 }
+        },
+        {
+          "id": "q10",
+          "type": "situational",
+          "responseMode": "most-least",
+          "scenario": "Two teammates interpret a synthetic project instruction differently.",
+          "actions": [
+            { "id": "a", "text": "Compare the interpretations against the stated goal." },
+            { "id": "b", "text": "Choose one interpretation without discussion." },
+            { "id": "c", "text": "Ask the owner to clarify the material difference." }
+          ]
+        },
+        {
+          "id": "q11",
+          "type": "situational",
+          "responseMode": "single",
+          "scenario": "A routine task produces an unexpected result in this technical sample.",
+          "actions": [
+            { "id": "a", "text": "Check the inputs and reproduce the result." },
+            { "id": "b", "text": "Assume the result is correct because the task is routine." },
+            { "id": "c", "text": "Delete the result and do not investigate." }
+          ]
+        },
+        {
+          "id": "q12",
+          "type": "situational",
+          "responseMode": "most-least",
+          "scenario": "A sample deadline changes after work has started.",
+          "actions": [
+            { "id": "a", "text": "Recheck priorities and communicate the updated plan." },
+            { "id": "b", "text": "Continue with the old plan without mentioning the change." },
+            { "id": "c", "text": "Identify which scope can move while preserving quality." }
+          ],
+          "traits": { "sampleTraitGamma": 1, "sampleTraitDelta": 1 }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A reusable, private practice environment for structured hiring assessments." />
+    <title>GHA Simulator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="app-header">
+      <a class="brand" href="./" aria-label="GHA Simulator home">
+        <span class="brand-mark" aria-hidden="true">G</span>
+        <span>GHA Simulator</span>
+      </a>
+      <span class="privacy-note">Progress stays on this device</span>
+    </header>
+    <main id="app" tabindex="-1">
+      <section class="shell" aria-labelledby="page-title">
+        <div class="eyebrow">Practice workspace</div>
+        <h1 id="page-title">Choose an assessment</h1>
+        <p class="lede">Technical sample questionnaires for testing the simulator. No official Google questions are included.</p>
+        <div id="assessment-list" class="assessment-list" aria-live="polite">
+          <div class="loading-card">Loading assessments…</div>
+        </div>
+      </section>
+    </main>
+    <dialog id="reset-dialog" class="confirm-dialog" aria-labelledby="reset-title">
+      <h2 id="reset-title">Reset this attempt?</h2>
+      <p>Your saved answers and progress for <strong id="reset-assessment-name"></strong> will be removed from this device.</p>
+      <div class="dialog-actions">
+        <button class="button button-quiet" type="button" data-action="cancel-reset">Cancel</button>
+        <button class="button button-danger" type="button" data-action="confirm-reset">Reset attempt</button>
+      </div>
+    </dialog>
+    <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
