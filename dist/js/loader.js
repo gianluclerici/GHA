@@ -18,6 +18,7 @@ function validateQuestion(question, location) {
   if (question.type === 'most-least') {
     requireValue(Array.isArray(question.statements) && question.statements.length >= 2, `${location}.statements must contain at least two items.`);
     validateChoices(question.statements, `${location}.statements`);
+    requireValue(question.selectionMode == null || ['pick-one-each', 'per-statement'].includes(question.selectionMode), `${location}.selectionMode must be “pick-one-each” or “per-statement”.`);
   }
 
   if (question.type === 'situational') {

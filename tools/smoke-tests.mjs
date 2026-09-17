@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { loadCatalog, loadQuestionnaire, flattenQuestions, validateQuestionnaire } from '../dist/js/loader.js';
 import { calculateRemainingSeconds } from '../dist/js/timer.js';
 import { buildResult, resultToCsv } from '../dist/js/exporter.js';
+import { questionRenderers, readAnswer } from '../dist/js/renderers.js';
 
 const baseUrl = process.env.GHA_BASE_URL ?? 'http://localhost:8000';
 const catalogResponse = await fetch(`${baseUrl}/questionnaires/index.json`);
@@ -25,6 +26,9 @@ assert.equal(calculateRemainingSeconds('2026-01-01T00:00:00.000Z', 1, now), 0, '
 const answers = Object.fromEntries(questions.map((question) => {
   if (question.type === 'likert') return [question.id, '3'];
   if (question.type === 'situational' && question.responseMode === 'single') return [question.id, question.actions[0].id];
+  if (question.type === 'most-least' && question.selectionMode === 'per-statement') {
+    return [question.id, { selections: Object.fromEntries(question.statements.map((statement, index) => [statement.id, index % 2 === 0 ? 'most' : 'least'])) }];
+  }
   const items = question.type === 'most-least' ? question.statements : question.actions;
   return [question.id, { most: items[0].id, least: items[1].id }];
 }));
@@ -32,6 +36,14 @@ const attempt = { questionnaireId: questionnaire.id, startedAt: '2026-01-01T00:0
 const result = buildResult(questionnaire, questions, attempt);
 assert.equal(result.answers.length, questions.length, 'JSON export contains every question');
 assert.ok(result.answers.some((answer) => answer.traits), 'JSON export preserves hidden metadata');
+const perStatementQuestion = questions.find((question) => question.type === 'most-least' && question.selectionMode === 'per-statement');
+const perStatementHtml = questionRenderers['most-least'](perStatementQuestion, null, false);
+assert.equal((perStatementHtml.match(/name="statement-/g) ?? []).length, perStatementQuestion.statements.length * 2, 'each statement renders its own radio group');
+const completeElements = { namedItem: (name) => ({ value: name.endsWith('b') ? 'least' : 'most' }) };
+const incompleteElements = { namedItem: (name) => ({ value: name.endsWith('c') ? '' : 'most' }) };
+assert.equal(Object.keys(readAnswer(perStatementQuestion, { elements: completeElements }).selections).length, perStatementQuestion.statements.length, 'one response is captured for every statement');
+assert.equal(readAnswer(perStatementQuestion, { elements: incompleteElements }), null, 'a missing row prevents submission');
+assert.equal(result.answers.find((answer) => answer.questionId === perStatementQuestion.id).responses.length, perStatementQuestion.statements.length, 'JSON export preserves every row response');
 const csv = resultToCsv(result);
 assert.ok(csv.includes('questionnaire_id') && csv.includes('sampleTraitAlpha'), 'CSV export is structured and includes metadata');
 

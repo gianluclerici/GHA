@@ -68,6 +68,7 @@ Every question requires a unique `id` and supported `type`. Optional `traits` ma
 {
   "id": "q2",
   "type": "most-least",
+  "selectionMode": "per-statement",
   "statements": [
     { "id": "a", "text": "Statement A" },
     { "id": "b", "text": "Statement B" },
@@ -75,6 +76,8 @@ Every question requires a unique `id` and supported `type`. Optional `traits` ma
   ]
 }
 ```
+
+`selectionMode: "per-statement"` requires one **Most like me** or **Least like me** response on every row. Use `"pick-one-each"` (or omit the field) for the classic forced-choice format where one statement is selected as most and another as least across the whole group.
 
 ### Situational
 

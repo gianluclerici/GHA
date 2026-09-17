@@ -51,6 +51,7 @@
         {
           "id": "q05",
           "type": "most-least",
+          "selectionMode": "per-statement",
           "statements": [
             { "id": "a", "text": "I organize the next steps before beginning." },
             { "id": "b", "text": "I ask for input when it improves the result." },
@@ -61,6 +62,7 @@
         {
           "id": "q06",
           "type": "most-least",
+          "selectionMode": "per-statement",
           "statements": [
             { "id": "a", "text": "I keep concise notes about key decisions." },
             { "id": "b", "text": "I verify ownership before handing work over." },
@@ -70,6 +72,7 @@
         {
           "id": "q07",
           "type": "most-least",
+          "selectionMode": "per-statement",
           "statements": [
             { "id": "a", "text": "I prefer a clear checklist for repeated work." },
             { "id": "b", "text": "I enjoy finding a simpler way to complete a task." },
@@ -79,6 +82,7 @@
         {
           "id": "q08",
           "type": "most-least",
+          "selectionMode": "per-statement",
           "statements": [
             { "id": "a", "text": "I close small gaps before they become larger issues." },
             { "id": "b", "text": "I focus first on the outcome with the highest impact." },

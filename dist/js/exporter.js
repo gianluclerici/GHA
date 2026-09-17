@@ -14,6 +14,16 @@ function selectionLabel(question, value) {
   return choice?.text ?? String(value);
 }
 
+function perStatementExport(question, answer) {
+  const responses = question.statements.map((statement) => ({
+    statementId: statement.id,
+    statement: statement.text,
+    selection: answer?.selections?.[statement.id] ?? null
+  }));
+  const answerText = responses.map((response) => `${response.statement}: ${response.selection === 'most' ? 'Most like me' : response.selection === 'least' ? 'Least like me' : 'No answer'}`).join(' | ');
+  return { selectionMode: 'per-statement', responses, answerText };
+}
+
 export function buildResult(questionnaire, questions, attempt) {
   return {
     schemaVersion: 1,
@@ -34,7 +44,9 @@ export function buildResult(questionnaire, questions, attempt) {
         choices: choicesFor(question),
         ...(question.traits ? { traits: question.traits } : {}),
         ...(question.consistencyGroup ? { consistencyGroup: question.consistencyGroup } : {}),
-        ...(question.type === 'likert' || (question.type === 'situational' && question.responseMode === 'single')
+        ...(question.type === 'most-least' && question.selectionMode === 'per-statement'
+          ? perStatementExport(question, answer)
+          : question.type === 'likert' || (question.type === 'situational' && question.responseMode === 'single')
           ? { answer, answerText: selectionLabel(question, answer) }
           : {
               most: answer?.most ?? null,

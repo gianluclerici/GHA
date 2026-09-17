@@ -138,11 +138,13 @@ function renderQuestion() {
 
 function handlePairExclusivity(event) {
   const input = event.target;
-  if (!(input instanceof HTMLInputElement) || !['most', 'least'].includes(input.name)) return;
+  if (!(input instanceof HTMLInputElement)) return;
+  const error = document.querySelector('#answer-error');
+  if (error) error.hidden = true;
+  if (!['most', 'least'].includes(input.name)) return;
   const otherName = input.name === 'most' ? 'least' : 'most';
   const matching = document.querySelector(`input[name="${otherName}"][value="${CSS.escape(input.value)}"]`);
   if (matching?.checked) matching.checked = false;
-  document.querySelector('#answer-error').hidden = true;
 }
 
 function submitCurrentQuestion(form) {
